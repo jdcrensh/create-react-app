@@ -29,7 +29,19 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     'start': 'react-scripts start',
     'build': 'react-scripts build',
     'test': 'react-scripts test --env=jsdom',
-    'eject': 'react-scripts eject'
+    'eject': 'react-scripts eject',
+    'deploy': 'react-scripts deploy',
+  };
+
+  // Set eslint config location so editors can find it
+  appPackage.eslintConfig = {
+    extends: './' + path.join('node_modules', ownPackageName, 'eslintrc')
+  }
+
+  // Configure project-level SFDC variables
+  appPackage.sfdc = {
+    apiVersion: '39.0',
+    apexPrefix: 'MyReactApp',
   };
 
   fs.writeFileSync(
@@ -129,6 +141,9 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   console.log();
   console.log(chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}build`));
   console.log('    Bundles the app into static files for production.');
+  console.log();
+  console.log(chalk.cyan(`  ${displayedCommand} ${useYarn ? '' : 'run '}deploy`));
+  console.log('    Deploys the bundled app to Salesforce. Configured by `.env` file and package.json');
   console.log();
   console.log(chalk.cyan('  ' + displayedCommand + ' test'));
   console.log('    Starts the test runner.');

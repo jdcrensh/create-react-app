@@ -19,6 +19,7 @@ case 'build':
 case 'eject':
 case 'start':
 case 'test':
+case 'deploy':
   var result = spawn.sync(
     'node',
     [require.resolve('../scripts/' + script)].concat(args),
