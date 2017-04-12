@@ -18,6 +18,7 @@ var ManifestPlugin = require('webpack-manifest-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var paths = require('./paths');
 var getClientEnvironment = require('./env');
+var sfdc = require('./sfdc');
 
 // @remove-on-eject-begin
 // `path` is not used after eject - see https://github.com/facebookincubator/create-react-app/issues/1174
@@ -35,7 +36,10 @@ var shouldUseRelativeAssetPaths = publicPath === './';
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
 var publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
-var env = getClientEnvironment(publicUrl);
+var env = getClientEnvironment({
+  publicUrl: publicUrl,
+  prefix: sfdc.prefix
+});
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -223,21 +227,24 @@ module.exports = {
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
     new InterpolateHtmlPlugin(env.raw),
-    // Generates an `index.html` file with the <script> injected.
+    // Generates Visualforce page with the <script> injected.
+    // This will be deployed to Salesforce when `yarn deploy` is run.
     new HtmlWebpackPlugin({
+      filename: 'visualforce.page',
       inject: true,
-      template: paths.appHtml,
+      template: paths.appVisualforce,
+      xhtml: true,
       minify: {
         removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
+        collapseWhitespace: false,
+        // removeRedundantAttributes: true,
+        // useShortDoctype: true,
+        // removeEmptyAttributes: true,
+        // removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true
+        minifyURLs: true,
       }
     }),
     // Makes some environment variables available to the JS code, for example:

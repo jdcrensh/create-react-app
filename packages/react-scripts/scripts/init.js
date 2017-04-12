@@ -41,7 +41,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   // Configure project-level SFDC variables
   appPackage.sfdc = {
     apiVersion: '39.0',
-    apexPrefix: 'MyReactApp',
+    prefix: 'MyReactApp',
   };
 
   fs.writeFileSync(
