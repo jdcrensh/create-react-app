@@ -1,5 +1,5 @@
 {
-  "name": "react-dev-utils",
+  "name": "vforce-react-dev-utils",
   "version": "0.5.2",
   "private": true,
   "description": "Webpack utilities used by Create React App",

@@ -1,8 +1,8 @@
 {
   "name": "@jdcrensh/react-scripts",
-  "version": "0.9.6-17",
-  "description": "Configuration and scripts for Create React App.",
-  "repository": "jdcrensh/create-react-app",
+  "version": "0.9.6-29",
+  "description": "Configuration and scripts for Create React App customized for Visualforce pages",
+  "repository": "jdcrensh/create-react-app#salesforce",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
@@ -10,6 +10,17 @@
   "bugs": {
     "url": "https://github.com/jdcrensh/create-react-app/issues"
   },
+  "keywords": [
+    "salesforce",
+    "sf",
+    "sfdc",
+    "visualforce",
+    "vf",
+    "apex",
+    "react",
+    "create-react-scripts",
+    "react-scripts"
+  ],
   "files": [
     "babelrc",
     "eslintrc",
@@ -57,7 +68,6 @@
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
     "promisify-node": "^0.4.0",
-    "raw-loader": "^0.5.1",
     "react-dev-utils": "^0.5.2",
     "stream-buffers": "^3.0.1",
     "style-loader": "0.13.1",
