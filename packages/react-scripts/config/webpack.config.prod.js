@@ -27,7 +27,8 @@ var path = require('path');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
-var publicPath = paths.servedPath;
+// For Salesforce, we need to set the path to the static resource.
+var publicPath = paths.servedPath !== '/' ? paths.servedPath : `/resource/${sfdc.prefix}/`;
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 var shouldUseRelativeAssetPaths = publicPath === './';
@@ -208,7 +209,7 @@ module.exports = {
   },
   // @remove-on-eject-end
   // We use PostCSS for autoprefixing only.
-  postcss: function() {
+  postcss: function () {
     return [
       autoprefixer({
         browsers: [
@@ -234,18 +235,7 @@ module.exports = {
       inject: true,
       template: paths.appVisualforce,
       xhtml: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: false,
-        // removeRedundantAttributes: true,
-        // useShortDoctype: true,
-        // removeEmptyAttributes: true,
-        // removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      }
+      minify: false,
     }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
