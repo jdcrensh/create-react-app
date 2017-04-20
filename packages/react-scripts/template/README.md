@@ -972,7 +972,7 @@ When you encounter bugs caused by changing components, you will gain a deeper in
 If you’d like to test components in isolation from the child components they render, we recommend using [`shallow()` rendering API](http://airbnb.io/enzyme/docs/api/shallow.html) from [Enzyme](http://airbnb.io/enzyme/). You can write a smoke test with it too:
 
 ```sh
-npm install --save-dev enzyme react-addons-test-utils
+npm install --save-dev enzyme react-test-renderer
 ```
 
 ```js
@@ -1013,10 +1013,10 @@ Additionally, you might find [jest-enzyme](https://github.com/blainekasten/enzym
 expect(wrapper).toContainReact(welcome)
 ```
 
-To setup jest-enzyme with Create React App, follow the instructions for [initializing your test environment](#initializing-test-environment) to import `jest-enzyme`.
+To setup jest-enzyme with Create React App, follow the instructions for [initializing your test environment](#initializing-test-environment) to import `jest-enzyme`. **Note that currently only version 2.x is compatible with Create React App.**
 
 ```sh
-npm install --save-dev jest-enzyme
+npm install --save-dev jest-enzyme@2.x
 ```
 
 ```js
@@ -1240,10 +1240,10 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-app.use(express.static('./build'));
+app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(9000);
@@ -1262,11 +1262,11 @@ If you use routers that use the HTML5 [`pushState` history API](https://develope
 This is because when there is a fresh page load for a `/todos/42`, the server looks for the file `build/todos/42` and does not find it. The server needs to be configured to respond to a request to `/todos/42` by serving `index.html`. For example, we can amend our Express example above to serve `index.html` for any unknown paths:
 
 ```diff
- app.use(express.static('./build'));
+ app.use(express.static(path.join(__dirname, 'build')));
 
 -app.get('/', function (req, res) {
 +app.get('/*', function (req, res) {
-   res.sendFile(path.join(__dirname, './build', 'index.html'));
+   res.sendFile(path.join(__dirname, 'build', 'index.html'));
  });
 ```
 
@@ -1516,17 +1516,17 @@ When you build the project, Create React App will place the `public` folder cont
 2. Install `serve` by running `npm install --save serve`.
 
 3. Add this line to `scripts` in `package.json`:
-    
+
     ```
     "now-start": "serve build/",
     ```
-    
+
 4. Run `now` from your project directory. You will see a **now.sh** URL in your output like this:
-    
+
     ```
     > Ready! https://your-project-dirname-tpspyhtdtk.now.sh (copied to clipboard)
     ```
-    
+
     Paste that URL into your browser when the build is complete, and you will see your deployed app.
 
 Details are available in [this article.](https://zeit.co/blog/now-static)

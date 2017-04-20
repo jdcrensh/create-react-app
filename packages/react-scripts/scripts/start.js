@@ -188,6 +188,14 @@ function addMiddleware(devServer) {
       console.log(chalk.red('Instead, the type of "proxy" was "' + typeof proxy + '".'));
       console.log(chalk.red('Either remove "proxy" from package.json, or make it a string.'));
       process.exit(1);
+      // Test that proxy url specified starts with http:// or https://
+    } else if (!/^http(s)?:\/\//.test(proxy)) {
+      console.log(
+        chalk.red(
+          'When "proxy" is specified in package.json it must start with either http:// or https://'
+        )
+      );
+      process.exit(1);
     }
 
     // Otherwise, if proxy is specified, we will let it handle any request.
@@ -278,7 +286,7 @@ function runDevServer(host, port, protocol) {
   addMiddleware(devServer);
 
   // Launch WebpackDevServer.
-  devServer.listen(port, err => {
+  devServer.listen(port, host, err => {
     if (err) {
       return console.log(err);
     }
@@ -295,7 +303,7 @@ function runDevServer(host, port, protocol) {
 
 function run(port) {
   var protocol = process.env.HTTPS === 'true' ? "https" : "http";
-  var host = process.env.HOST || 'localhost';
+  var host = process.env.HOST || '0.0.0.0';
   setupCompiler(host, port, protocol);
   runDevServer(host, port, protocol);
 }
