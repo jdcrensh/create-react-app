@@ -1,5 +1,5 @@
 {
-  "name": "@jdcrensh/react-scripts",
+  "name": "salesforce-react-scripts",
   "version": "0.9.6-29",
   "description": "Configuration and scripts for Create React App customized for Visualforce pages",
   "repository": "jdcrensh/create-react-app#salesforce",

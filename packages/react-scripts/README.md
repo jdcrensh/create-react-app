@@ -15,7 +15,7 @@ distribution, this fork includes customizations to for Visualforce page.
 
 ```bash
 npm install -g create-react-app
-create-react-app my-react-app --scripts-version @jdcrensh/react-scripts
+create-react-app my-react-app --scripts-version salesforce-react-scripts
 ```
 
 ## Configure
