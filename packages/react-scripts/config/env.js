@@ -15,7 +15,7 @@
 
 var REACT_APP = /^REACT_APP_/i;
 
-function getClientEnvironment({ publicUrl, prefix }) {
+function getClientEnvironment(publicUrl, sfdcPrefix) {
   var raw = Object
     .keys(process.env)
     .filter(key => REACT_APP.test(key))
@@ -33,7 +33,7 @@ function getClientEnvironment({ publicUrl, prefix }) {
       'PUBLIC_URL': publicUrl,
       // For defining the "Apex Prefix" of Salesforce assets, i.e. Apex page,
       // controller, and static resource names
-      'SFDC_PREFIX': prefix
+      'SFDC_PREFIX': sfdcPrefix
     });
   // Stringify all values so we can feed into Webpack DefinePlugin
   var stringified = {

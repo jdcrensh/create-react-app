@@ -5,7 +5,7 @@
   "repository": "jdcrensh/create-react-app#salesforce",
   "license": "BSD-3-Clause",
   "engines": {
-    "node": ">=6"
+    "node": ">=4"
   },
   "bugs": {
     "url": "https://github.com/jdcrensh/create-react-app/issues"

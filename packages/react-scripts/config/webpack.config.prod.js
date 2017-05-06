@@ -37,10 +37,7 @@ var shouldUseRelativeAssetPaths = publicPath === './';
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
 var publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
-var env = getClientEnvironment({
-  publicUrl: publicUrl,
-  prefix: sfdc.prefix
-});
+var env = getClientEnvironment(publicUrl, sfdc.prefix);
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
@@ -231,11 +228,14 @@ module.exports = {
     // Generates Visualforce page with the <script> injected.
     // This will be deployed to Salesforce when `yarn deploy` is run.
     new HtmlWebpackPlugin({
-      filename: 'visualforce.page',
       inject: true,
       template: paths.appVisualforce,
+      filename: path.basename(paths.appVisualforce),
       xhtml: true,
-      minify: false,
+      keepClosingSlash: true,
+      minify: {
+        removeComments: true,
+      }
     }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.

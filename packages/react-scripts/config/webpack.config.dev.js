@@ -33,10 +33,7 @@ var publicPath = '/';
 // Omit trailing slash as %PUBLIC_PATH%/xyz looks better than %PUBLIC_PATH%xyz.
 var publicUrl = '';
 // Get environment variables to inject into our app.
-var env = getClientEnvironment({
-  publicUrl: publicUrl,
-  prefix: sfdc.prefix
-});
+var env = getClientEnvironment(publicUrl, sfdc.prefix);
 
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.

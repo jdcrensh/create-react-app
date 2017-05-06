@@ -127,7 +127,7 @@ const deployPage = conn => () => {
   const { prefix, apiVersion } = sfdc;
   process.stdout.write(`Deploying ${prefix}.page... `);
 
-  const source = fs.readFileSync(path.join(paths.appBuild, 'visualforce.page'));
+  const source = fs.readFileSync(path.join(paths.appBuild, 'visualforce.html'));
   return conn.metadata
     .upsert('ApexPage', {
       fullName: prefix,
