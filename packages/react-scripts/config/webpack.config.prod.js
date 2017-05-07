@@ -232,9 +232,10 @@ module.exports = {
       template: paths.appVisualforce,
       filename: path.basename(paths.appVisualforce),
       xhtml: true,
-      keepClosingSlash: true,
       minify: {
+        caseSensitive: true,
         removeComments: true,
+        keepClosingSlash: true,
       }
     }),
     // Makes some environment variables available to the JS code, for example:
