@@ -93,9 +93,16 @@ function build(previousFileSizes) {
     if (publicPath !== '/') {
       // "homepage": "http://mywebsite.com/project"
       console.log('The project was built assuming it is hosted at ' + chalk.green(publicPath) + '.');
-      console.log('You can control this with the ' + chalk.green('homepage') + ' field in your '  + chalk.cyan('package.json') + '.');
+      console.log('You can control this with the ' + chalk.green('sfdc.prefix') + ' field in your '  + chalk.cyan('package.json') + '.');
       console.log();
       console.log('The ' + chalk.cyan('build') + ' folder is ready to be deployed.');
+      console.log('You may deploy it to Salesforce:');
+      console.log();
+      if (useYarn) {
+        console.log(`  ${chalk.cyan('yarn')} deploy`);
+      } else {
+        console.log(`  ${chalk.cyan('npm')} run deploy`);
+      }
       console.log();
     } else {
       if (publicUrl) {
