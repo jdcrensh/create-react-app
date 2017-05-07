@@ -105,7 +105,8 @@ const deployBundle = conn => bundle => {
 };
 
 const deployDefaultController = conn => () => {
-  const { prefix, apiVersion } = sfdc;
+  const prefix = sfdc.prefix;
+  const apiVersion = sfdc.apiVersion;
   const apexController = `${prefix}Controller`;
   process.stdout.write(`Checking for ${apexController}... `);
   return conn.tooling
@@ -124,7 +125,8 @@ const deployDefaultController = conn => () => {
 };
 
 const deployPage = conn => () => {
-  const { prefix, apiVersion } = sfdc;
+  const prefix = sfdc.prefix;
+  const apiVersion = sfdc.apiVersion;
   process.stdout.write(`Deploying ${prefix}.page... `);
 
   const source = fs.readFileSync(path.join(paths.appBuild, 'visualforce.html'));
