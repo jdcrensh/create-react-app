@@ -30,13 +30,19 @@ const logAndReject = err => {
 
 const check = v => {
   if (!process.env[v]) {
-    return Promise.reject(`${v} is not configured. Check ${chalk.bold(chalk.cyan('.env'))} file`);
+    return Promise.reject(
+      `${v} is not configured. Check ${chalk.bold(chalk.cyan('.env'))} file`
+    );
   }
   return Promise.resolve();
 };
 
 const checkEnv = () => {
-  return Promise.all([check(SF_LOGIN_URL), check(SF_USERNAME), check(SF_PASSWORD)]);
+  return Promise.all([
+    check(SF_LOGIN_URL),
+    check(SF_USERNAME),
+    check(SF_PASSWORD),
+  ]);
 };
 
 const connect = () => {
