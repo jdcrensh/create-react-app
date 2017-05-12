@@ -42,7 +42,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   // Configure project-level SFDC variables
   appPackage.sfdc = {
     apiVersion: '39.0',
-    prefix: _.capitalize(_.camelCase(appPackage.name)),
+    prefix: _.upperFirst(_.camelCase(appPackage.name)),
   };
 
   fs.writeFileSync(

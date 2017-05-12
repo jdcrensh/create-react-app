@@ -8,7 +8,7 @@ if (!appPackageJson.sfdc) {
   appPackageJson.sfdc = {};
 }
 if (!appPackageJson.sfdc.prefix) {
-  appPackageJson.sfdc.prefix = _.capitalize(_.camelCase(appPackageJson.name));
+  appPackageJson.sfdc.prefix = _.upperFirst(_.camelCase(appPackageJson.name));
 }
 if (!appPackageJson.sfdc.apiVersion) {
   appPackageJson.sfdc.apiVersion = '37.0';
