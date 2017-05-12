@@ -9,6 +9,7 @@
 
 'use strict';
 
+var _ = require('lodash');
 var fs = require('fs-extra');
 var path = require('path');
 var spawn = require('cross-spawn');
@@ -41,7 +42,7 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   // Configure project-level SFDC variables
   appPackage.sfdc = {
     apiVersion: '39.0',
-    prefix: 'MyReactApp',
+    prefix: _.capitalize(_.camelCase(appPackage.name)),
   };
 
   fs.writeFileSync(
