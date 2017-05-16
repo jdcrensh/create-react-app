@@ -11,6 +11,7 @@ const jsforce = require('jsforce');
 const streamBuffers = require('stream-buffers');
 const archiver = require('archiver');
 const glob = promisify('glob');
+const status = require('node-status');
 const paths = require('../config/paths');
 const sfdc = require('../config/sfdc');
 
@@ -18,13 +19,29 @@ const SF_LOGIN_URL = 'SF_LOGIN_URL';
 const SF_USERNAME = 'SF_USERNAME';
 const SF_PASSWORD = 'SF_PASSWORD';
 
-const logAndResolve = res => {
-  console.log(chalk.green('OK'));
+const job = status.addItem('job', { steps: [] });
+
+let started = false;
+
+const pushStep = step => {
+  job.steps.push(chalk.bold(step));
+  if (!started) {
+    console.log();
+    started = true;
+    status.start({
+      interval: 80,
+      pattern: '{spinner.cyan} {job.step}',
+    });
+  }
+};
+
+const resolve = res => {
+  job.doneStep(true);
   return Promise.resolve(res);
 };
 
-const logAndReject = err => {
-  console.log(chalk.red('ERROR'));
+const reject = err => {
+  job.doneStep(false);
   return Promise.reject(err);
 };
 
@@ -57,14 +74,12 @@ const connect = () => {
 const login = conn => () => {
   const username = process.env[SF_USERNAME];
   const password = process.env[SF_PASSWORD];
-  process.stdout.write(`Logging in as ${username}... `);
-
-  return conn.login(username, password).then(logAndResolve).catch(logAndReject);
+  pushStep(`Logging in as ${username}`);
+  return conn.login(username, password).then(resolve).catch(reject);
 };
 
 const bundle = () => {
-  process.stdout.write('Bundling build assets as static resource... ');
-
+  pushStep('Bundling build assets as static resource');
   return new Promise((resolve, reject) => {
     const output = new streamBuffers.WritableStreamBuffer({
       initialSize: 100 * 1024, // start at 100 kilobytes.
@@ -91,8 +106,8 @@ const bundle = () => {
       .catch(reject)
       .then(() => archive.finalize());
   })
-    .then(logAndResolve)
-    .catch(logAndReject);
+    .then(resolve)
+    .catch(reject);
 };
 
 const deployBundle = conn => bundle => {
@@ -103,37 +118,36 @@ const deployBundle = conn => bundle => {
     cacheControl: 'Private',
     content: bundle.getContentsAsString('base64'),
   };
-  process.stdout.write(`Deploying bundle as ${prefix}.resource... `);
+  pushStep(`Deploying bundle as ${prefix}.resource`);
 
   return conn.metadata
     .upsert('StaticResource', metadata)
-    .then(res => (res.success ? logAndResolve(res) : logAndReject(res)));
+    .then(res => (res.success ? resolve(res) : reject(res)));
 };
 
 const deployDefaultController = conn => () => {
   const prefix = sfdc.prefix;
   const apiVersion = sfdc.apiVersion;
   const apexController = `${prefix}Controller`;
-  process.stdout.write(`Checking for ${apexController}... `);
+  pushStep(`Checking for ${apexController}`);
   return conn.tooling
     .sobject('ApexClass')
     .findOne({ Name: apexController })
-    .then(res => (res == null ? Promise.reject() : logAndResolve()))
+    .then(res => (res == null ? reject() : resolve()))
     .catch(() => {
-      console.log(chalk.yellow('MISSING'));
-      process.stdout.write(`Deploying ${apexController}... `);
+      pushStep(`Creating ${apexController}`);
       const body = `public with sharing class ${apexController} {}`;
       return conn.tooling
         .sobject('ApexClass')
         .create({ apiVersion, body })
-        .then(res => (res.success ? logAndResolve(res) : logAndReject(res)));
+        .then(res => (res.success ? resolve(res) : reject(res)));
     });
 };
 
 const deployPage = conn => () => {
   const prefix = sfdc.prefix;
   const apiVersion = sfdc.apiVersion;
-  process.stdout.write(`Deploying ${prefix}.page... `);
+  pushStep(`Deploying ${prefix}.page`);
 
   const source = fs.readFileSync(path.join(paths.appBuild, 'visualforce.html'));
   return conn.metadata
@@ -146,7 +160,7 @@ const deployPage = conn => () => {
       confirmationTokenRequired: false,
       content: new Buffer(source).toString('base64'),
     })
-    .then(res => (res.success ? logAndResolve(res) : logAndReject(res)));
+    .then(res => (res.success ? resolve(res) : reject(res)));
 };
 
 Promise.resolve()
@@ -161,11 +175,13 @@ Promise.resolve()
       .then(deployPage(conn));
   })
   .catch(err => {
+    status.stop();
     console.log();
     console.error(err);
     return Promise.reject(err);
   })
   .then(() => {
+    status.stop();
     console.log();
     console.log(chalk.green('Completed successfully.'));
   });

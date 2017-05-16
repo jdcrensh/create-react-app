@@ -65,6 +65,7 @@
     "jest": "18.1.0",
     "jsforce": "^1.7.1",
     "json-loader": "0.5.4",
+    "node-status": "^1.0.0",
     "object-assign": "4.1.1",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",
