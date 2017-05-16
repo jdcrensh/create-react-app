@@ -88,49 +88,16 @@ function build(previousFileSizes) {
     printFileSizesAfterBuild(stats, previousFileSizes);
     console.log();
 
-    var publicUrl = paths.publicUrl;
-    var publicPath = config.output.publicPath;
-    if (publicPath !== '/') {
-      // "homepage": "http://mywebsite.com/project"
-      console.log('The project was built assuming it is hosted at ' + chalk.green(publicPath) + '.');
-      console.log('You can control this with the ' + chalk.green('sfdc.prefix') + ' field in your '  + chalk.cyan('package.json') + '.');
-      console.log();
-      console.log('The ' + chalk.cyan('build') + ' folder is ready to be deployed.');
-      console.log('You may deploy it to Salesforce:');
-      console.log();
-      if (useYarn) {
-        console.log(`  ${chalk.cyan('yarn')} deploy`);
-      } else {
-        console.log(`  ${chalk.cyan('npm')} run deploy`);
-      }
-      console.log();
+    // "homepage": "http://mywebsite.com/project"
+    console.log('The ' + chalk.cyan('build') + ' folder is ready to be deployed.');
+    console.log('You may deploy it to Salesforce:');
+    console.log();
+    if (useYarn) {
+      console.log(`  ${chalk.cyan('yarn')} deploy`);
     } else {
-      if (publicUrl) {
-        // "homepage": "http://mywebsite.com"
-        console.log('The project was built assuming it is hosted at ' + chalk.green(publicUrl) +  '.');
-        console.log('You can control this with the ' + chalk.green('homepage') + ' field in your '  + chalk.cyan('package.json') + '.');
-        console.log();
-      } else {
-        // no homepage
-        console.log('The project was built assuming it is hosted at the server root.');
-        console.log('To override this, specify the ' + chalk.green('homepage') + ' in your '  + chalk.cyan('package.json') + '.');
-        console.log('For example, add this to build it for GitHub Pages:')
-        console.log();
-        console.log('  ' + chalk.green('"homepage"') + chalk.cyan(': ') + chalk.green('"http://myname.github.io/myapp"') + chalk.cyan(','));
-        console.log();
-      }
-      var build = path.relative(process.cwd(), paths.appBuild);
-      console.log('The ' + chalk.cyan(build) + ' folder is ready to be deployed.');
-      console.log('You may serve it with a static server:');
-      console.log();
-      if (useYarn) {
-        console.log(`  ${chalk.cyan('yarn')} global add serve`);
-      } else {
-        console.log(`  ${chalk.cyan('npm')} install -g serve`);
-      }
-      console.log(`  ${chalk.cyan('serve')} -s build`);
-      console.log();
+      console.log(`  ${chalk.cyan('npm')} run deploy`);
     }
+    console.log();
   });
 }
 
