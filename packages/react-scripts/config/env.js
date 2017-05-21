@@ -15,7 +15,7 @@
 
 var REACT_APP = /^REACT_APP_/i;
 
-function getClientEnvironment(publicUrl, sfdcPrefix) {
+function getClientEnvironment(publicUrl) {
   var raw = Object
     .keys(process.env)
     .filter(key => REACT_APP.test(key))
@@ -31,9 +31,6 @@ function getClientEnvironment(publicUrl, sfdcPrefix) {
       // This should only be used as an escape hatch. Normally you would put
       // images into the `src` and `import` them in code to get their paths.
       'PUBLIC_URL': publicUrl,
-      // For defining the "Apex Prefix" of Salesforce assets, i.e. Apex page,
-      // controller, and static resource names
-      'SFDC_PREFIX': sfdcPrefix
     });
   // Stringify all values so we can feed into Webpack DefinePlugin
   var stringified = {

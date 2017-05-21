@@ -15,6 +15,8 @@ var path = require('path');
 var spawn = require('cross-spawn');
 var chalk = require('chalk');
 
+const deindent = str => str.trim().replace(/^[ \t]+/gm, '') + '\n';
+
 module.exports = function(appPath, appName, verbose, originalDirectory, template) {
   var ownPackageName = require(path.join(__dirname, '..', 'package.json')).name;
   var ownPath = path.join(appPath, 'node_modules', ownPackageName);
@@ -39,11 +41,19 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     extends: './' + path.join('node_modules', ownPackageName, 'eslintrc')
   }
 
-  // Configure project-level SFDC variables
-  appPackage.sfdc = {
-    apiVersion: '39.0',
-    prefix: _.upperFirst(_.camelCase(appPackage.name)),
-  };
+  // Add project-level env
+  const defaultEnv = `
+    # Enables importing absolute paths for modules under the src directory
+    NODE_PATH=src
+
+    # Defines the 'prefix' given to deployed Salesforce assets
+    # i.e. the Apex page, controller, and static resource names
+    REACT_APP_SF_PREFIX=${_.upperFirst(_.camelCase(appPackage.name))}
+  `;
+  fs.writeFileSync(
+    path.join(appPath, '.env'),
+    deindent(defaultEnv)
+  );
 
   fs.writeFileSync(
     path.join(appPath, 'package.json'),

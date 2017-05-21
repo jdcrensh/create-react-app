@@ -18,7 +18,6 @@ var ManifestPlugin = require('webpack-manifest-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var paths = require('./paths');
 var getClientEnvironment = require('./env');
-var sfdc = require('./sfdc');
 
 // @remove-on-eject-begin
 // `path` is not used after eject - see https://github.com/facebookincubator/create-react-app/issues/1174
@@ -27,8 +26,8 @@ var path = require('path');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
-// For Salesforce, we need to set the path to the static resource.
-var publicPath = paths.servedPath !== '/' ? paths.servedPath : `{!$Resource.${sfdc.prefix}}/`;
+// By default, set it to the path to the static resource for Visualforce.
+var publicPath = paths.servedPath !== '/' ? paths.servedPath : `{!$Resource.${process.env.REACT_APP_SF_PREFIX}}/`;
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 var shouldUseRelativeAssetPaths = publicPath === './';
@@ -37,7 +36,7 @@ var shouldUseRelativeAssetPaths = publicPath === './';
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
 var publicUrl = publicPath.slice(0, -1);
 // Get environment variables to inject into our app.
-var env = getClientEnvironment(publicUrl, sfdc.prefix);
+var env = getClientEnvironment(publicUrl);
 
 // Assert this just to be safe.
 // Development builds of React are slow and not intended for production.
