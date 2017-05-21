@@ -36,11 +36,6 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     'deploy': 'react-scripts deploy',
   };
 
-  // Set eslint config location so editors can find it
-  appPackage.eslintConfig = {
-    extends: './' + path.join('node_modules', ownPackageName, 'eslintrc')
-  }
-
   // Add project-level env
   const defaultEnv = `
     # Enables importing absolute paths for modules under the src directory
