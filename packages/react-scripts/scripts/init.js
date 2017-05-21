@@ -16,10 +16,13 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
+const _ = require('lodash');
 const fs = require('fs-extra');
 const path = require('path');
 const chalk = require('chalk');
 const spawn = require('react-dev-utils/crossSpawn');
+
+const deindent = str => str.trim().replace(/^[ \t]+/gm, '') + '\n';
 
 module.exports = function(
   appPath,
@@ -45,9 +48,21 @@ module.exports = function(
   appPackage.scripts = {
     start: 'react-scripts start',
     build: 'react-scripts build',
+    deploy: 'react-scripts deploy',
     test: 'react-scripts test --env=jsdom',
     eject: 'react-scripts eject',
   };
+
+  // Add project-level env
+  const defaultEnv = `
+    # Enables importing absolute paths for modules under the src directory
+    NODE_PATH=src
+
+    # Defines the 'prefix' given to deployed Salesforce assets
+    # i.e. the Apex page, controller, and static resource names
+    REACT_APP_SF_PREFIX=${_.upperFirst(_.camelCase(appPackage.name))}
+  `;
+  fs.writeFileSync(path.join(appPath, '.env'), deindent(defaultEnv));
 
   fs.writeFileSync(
     path.join(appPath, 'package.json'),

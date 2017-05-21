@@ -23,9 +23,14 @@ const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 
+const prefix = process.env.REACT_APP_SF_PREFIX || 'MyApp';
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
-const publicPath = paths.servedPath;
+// By default, set it to the path to the static resource for Visualforce.
+const publicPath = paths.servedPath !== '/'
+  ? paths.servedPath
+  : `{!$Resource.${prefix}}/`;
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
@@ -43,7 +48,7 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 }
 
 // Note: defined here because it will be used more than once.
-const cssFilename = 'static/css/[name].[contenthash:8].css';
+const cssFilename = 'static/css/[name].css';
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -71,10 +76,10 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
-    // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: publicPath,
+    filename: 'static/js/[name].js',
+    chunkFilename: 'static/js/[name].chunk.js',
+    // Setting to '/' because the base URL will be set
+    publicPath: './',
     // Point sourcemap entries to original disk location
     devtoolModuleFilenameTemplate: info =>
       path.relative(paths.appSrc, info.absoluteResourcePath),
@@ -168,7 +173,7 @@ module.exports = {
         ],
         loader: require.resolve('file-loader'),
         options: {
-          name: 'static/media/[name].[hash:8].[ext]',
+          name: 'static/media/[name].[ext]',
         },
       },
       // "url" loader works just like "file" loader but it also embeds
@@ -178,7 +183,7 @@ module.exports = {
         loader: require.resolve('url-loader'),
         options: {
           limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]',
+          name: 'static/media/[name].[ext]',
         },
       },
       // Process JS with Babel.
@@ -216,6 +221,8 @@ module.exports = {
                   loader: require.resolve('css-loader'),
                   options: {
                     importLoaders: 1,
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]',
                     minimize: true,
                     sourceMap: true,
                   },
@@ -259,18 +266,13 @@ module.exports = {
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
-      template: paths.appHtml,
+      template: paths.appVisualforce,
+      filename: path.basename(paths.appVisualforce),
+      xhtml: true,
       minify: {
+        caseSensitive: true,
         removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
         keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
       },
     }),
     // Makes some environment variables available to the JS code, for example:
@@ -319,7 +321,7 @@ module.exports = {
         console.log(message);
       },
       minify: true,
-      navigateFallback: publicUrl + '/index.html',
+      navigateFallback: `/apex/${prefix}`,
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
       // Work around Windows path issue in SWPrecacheWebpackPlugin:
       // https://github.com/facebookincubator/create-react-app/issues/2235

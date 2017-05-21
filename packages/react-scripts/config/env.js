@@ -10,6 +10,7 @@
 // @remove-on-eject-end
 'use strict';
 
+const _ = require('lodash');
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
@@ -62,6 +63,16 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .filter(folder => folder && !path.isAbsolute(folder))
   .map(folder => path.resolve(appDirectory, folder))
   .join(path.delimiter);
+
+// Setting some SFDC defaults
+if (!process.env.SF_API_VERSION) {
+  process.env.SF_API_VERSION = '39.0';
+}
+if (!process.env.REACT_APP_SF_PREFIX) {
+  process.env.REACT_APP_SF_PREFIX = _.upperFirst(
+    _.camelCase(paths.appPackage ? paths.appPackage.name : 'MyApp')
+  );
+}
 
 // Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be
 // injected into the application via DefinePlugin in Webpack configuration.
