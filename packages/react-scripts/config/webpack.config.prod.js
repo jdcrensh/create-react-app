@@ -284,10 +284,11 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        // This feature has been reported as buggy a few times, such as:
-        // https://github.com/mishoo/UglifyJS2/issues/1964
-        // We'll wait with enabling it by default until it is more solid.
-        reduce_vars: false,
+        // Disabled because of an issue with Uglify breaking seemingly valid code:
+        // https://github.com/facebookincubator/create-react-app/issues/2376
+        // Pending further investigation:
+        // https://github.com/mishoo/UglifyJS2/issues/2011
+        comparisons: false,
       },
       output: {
         comments: false,
@@ -322,6 +323,7 @@ module.exports = {
       },
       minify: true,
       navigateFallback: `/apex/${prefix}`,
+      // Don't precache sourcemaps (they're large) and build asset manifest:
       staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
       // Work around Windows path issue in SWPrecacheWebpackPlugin:
       // https://github.com/facebookincubator/create-react-app/issues/2235
