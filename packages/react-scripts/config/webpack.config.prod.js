@@ -214,11 +214,11 @@ module.exports = {
               use: [
                 {
                   loader: require.resolve('css-loader'),
-                  options: {
+                  options: require('./custom/cssModules')({
                     importLoaders: 1,
                     minimize: true,
                     sourceMap: true,
-                  },
+                  }),
                 },
                 {
                   loader: require.resolve('postcss-loader'),

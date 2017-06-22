@@ -2,7 +2,7 @@
 
 module.exports = config => {
   const res = Object.assign({}, config);
-  if (process.env.REACT_APP_NO_FILE_HASH === 'true') {
+  if (process.env.DISABLE_FILE_HASH === 'true') {
     const walk = obj => {
       const paths = {
         object: k => walk(obj[k]),

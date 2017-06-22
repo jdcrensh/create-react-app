@@ -210,9 +210,9 @@ module.exports = {
           require.resolve('style-loader'),
           {
             loader: require.resolve('css-loader'),
-            options: {
+            options: require('./custom/cssModules')({
               importLoaders: 1,
-            },
+            }),
           },
           {
             loader: require.resolve('postcss-loader'),
