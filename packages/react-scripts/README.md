@@ -33,3 +33,7 @@ The deploy script will:
 1) Bundle the `build` directory and deploy it as a static resource (eg MyReactApp.resource),
 2) Create a blank Apex controller (eg MyReactAppController) if one does not exist,
 3) Deploy a Visualforce page (eg MyReactApp.page) using the template at `public/visualforce.html`
+
+# Service Workers
+
+Service workers, such as the one included in Create React App, are not currently supported.
