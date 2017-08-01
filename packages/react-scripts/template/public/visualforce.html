@@ -6,21 +6,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="theme-color" content="#000000" />
-    <base href="%PUBLIC_URL%/" />
     <!--
       The global variable webpackPublicPath is used internally
       by Webpack to provide it the correct `public` folder path
       so it can reference resources from code.
     -->
     <script>
-      webpackPublicPath = '%PUBLIC_URL%/';
+      window.webpackPublicPath = '%PUBLIC_URL%/';
     </script>
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="manifest.json" />
-    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <title>React App</title>
   </head>
 
