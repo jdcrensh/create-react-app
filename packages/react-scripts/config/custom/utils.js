@@ -9,33 +9,28 @@ const getFunctionName = obj => {
 const filterPlugins = (config, filter) =>
   config.plugins.filter(p => filter[getFunctionName(p)] !== false);
 
-const findLoaderConfig = (config, name) => {
-  let loader = config.module.rules.find(
-    rule => (rule.loader || '').indexOf(name) > -1
-  );
-  if (!loader) {
-    // config.module.rules[4].loader[2].options
-    config.module.rules.some(rule => {
-      if (Array.isArray(rule.loader)) {
-        return (loader = rule.loader.find(
-          r => (r.loader || '').indexOf(name) > -1
-        ));
-      }
-      return false;
-    });
+const findRule = (config, ext) => {
+  const _find = rules =>
+    rules.find(r => r.test instanceof RegExp && r.test.test(ext));
+  const rules = config.module.rules;
+  let rule = _find(rules);
+  if (!rule) {
+    rule = _find(rules.find(r => r.oneOf).oneOf);
   }
-  if (!loader) {
-    config.module.rules.some(rule => {
-      const loaders = rule.use || [];
-      loader = loaders.find(m => (m.loader || '').indexOf(name) > -1);
-      return loader;
-    });
-  }
-  return loader;
+  return rule;
 };
+
+const findCssLoader = config => {
+  const rule = findRule(config, '.css');
+  const loaders = rule.loader || rule.use;
+  return loaders.find(l => l.loader === require.resolve('css-loader'));
+};
+
+const isEnabled = value => value && value !== 'false';
 
 module.exports = {
   getFunctionName,
   filterPlugins,
-  findLoaderConfig,
+  findCssLoader,
+  isEnabled,
 };

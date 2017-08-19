@@ -1,8 +1,12 @@
 'use strict';
 
+const { isEnabled } = require('./utils');
+
 module.exports = config => {
-  const res = Object.assign({}, config);
-  if (process.env.DISABLE_FILE_HASH === 'true') {
+  if (
+    process.env.NODE_ENV === 'production' &&
+    isEnabled(process.env.DISABLE_FILE_HASH)
+  ) {
     const walk = obj => {
       const paths = {
         object: k => walk(obj[k]),
@@ -16,7 +20,7 @@ module.exports = config => {
           .forEach(k => paths[typeof obj[k]](k));
       }
     };
-    walk(res);
+    walk(config);
   }
-  return res;
+  return config;
 };
