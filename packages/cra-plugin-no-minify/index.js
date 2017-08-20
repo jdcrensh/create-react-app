@@ -1,11 +1,11 @@
 'use strict';
 
-const { findCssLoader, filterPlugins, isEnabled } = require('./utils');
+const { findCssLoader, filterPlugins, isEnabled } = require('cra-plugin-utils');
 
-module.exports = config => {
+const webpack = (config, { env }) => {
   if (
-    process.env.NODE_ENV === 'production' &&
-    isEnabled(process.env.DISABLE_MINIFICATION)
+    env.NODE_ENV === 'production' &&
+    isEnabled(env.CRA_PLUGIN_NO_MINIFY || 'true')
   ) {
     // remove UglifyJsPlugin
     config.plugins = filterPlugins(config, {
@@ -19,3 +19,5 @@ module.exports = config => {
   }
   return config;
 };
+
+module.exports = { webpack };

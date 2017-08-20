@@ -1,0 +1,12 @@
+{
+  "name": "cra-plugin-css-modules",
+  "version": "0.0.1",
+  "description": "CSS Modules plugin for Create React App",
+  "main": "index.js",
+  "repository": "jdcrensh/create-react-app#custom",
+  "author": "Jon Crenshaw <jdcrensh@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cra-plugin-utils": "^0.1.0"
+  }
+}

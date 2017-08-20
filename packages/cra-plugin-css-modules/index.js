@@ -1,0 +1,14 @@
+'use strict';
+
+const { findCssLoader } = require('cra-plugin-utils');
+
+const webpack = config => {
+  const cssLoader = findCssLoader(config);
+  cssLoader.options = Object.assign(cssLoader.options, {
+    modules: true,
+    localIdentName: '[local]--[hash:base64:5]',
+  });
+  return config;
+};
+
+module.exports = { webpack };

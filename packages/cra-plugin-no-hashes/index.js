@@ -1,11 +1,11 @@
 'use strict';
 
-const { isEnabled } = require('./utils');
+const { isEnabled } = require('cra-plugin-utils');
 
-module.exports = config => {
+const webpack = (config, { env }) => {
   if (
-    process.env.NODE_ENV === 'production' &&
-    isEnabled(process.env.DISABLE_FILE_HASH)
+    env.NODE_ENV === 'production' &&
+    isEnabled(env.CRA_PLUGIN_NO_HASHES || 'true')
   ) {
     const walk = obj => {
       const paths = {
@@ -24,3 +24,5 @@ module.exports = config => {
   }
   return config;
 };
+
+module.exports = { webpack };

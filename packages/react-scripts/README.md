@@ -1,17 +1,54 @@
 # react-scripts
 
-This package includes scripts and configuration used by [Create React App](https://github.com/facebookincubator/create-react-app).<br>
+This package includes scripts and configuration used by [Create React App](https://github.com/jdcrensh/create-react-app/tree/custom).<br>
 Please refer to its documentation:
 
-* [Getting Started](https://github.com/facebookincubator/create-react-app/blob/master/README.md#getting-started) – How to create a new app.
-* [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
+* [Getting Started](https://github.com/jdcrensh/create-react-app/blob/custom/README.md#getting-started) – How to create a new app.
+* [User Guide](https://github.com/jdcrensh/create-react-app/blob/custom/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
 
-# Custom fork options (.env)
+## Unofficial Fork
 
-Variable | Usage
-:--- | :---
-NODE_PATH | Path relative to the app's root. If set, imported modules may be resolved from this path; eg. `NODE_PATH=src` will let you change something like `import x from '../../components/x'` to `import x from 'components/x'`. Be careful of name clashes with dependencies.
-ENABLE_CSS_MODULES | When set to `true`, [CSS Modules](https://github.com/css-modules/css-modules) will be turned on for the app. Defaults to `false`.
-DISABLE_FILE_HASH | When set to `true`, hash strings will not be added to filenames (eg. main.35dbe941.js). Defaults to `false`.
-DISABLE_MINIFICATION | When set to `true`, built files will not be minified. This can be useful for debugging production builds. Defaults to `false`.
-WEBPACK_CUSTOMIZER_PATH | Webpack's configuration may be customized by setting this to the filename of a webpack customizer module relative to the app's root. The module provides the original config which may be modified then returned. The second parameter will be the value of `process.env.NODE_ENV`. Minimal source example: `module.exports = (config, env) => config`
+This fork adds support for plugins.
+
+* The naming convension for modules is `cra-plugin-NAME`, scopes are also supported.
+* A plugin is a simple module exporting the features that it supports.
+* Plugins have some access to Create React App internals through an options object passed to it.
+* Plugins are loaded dynamically, provided that they're listed in the app's `dependencies` or `devDependencies`.
+
+### Features
+
+#### Webpack
+
+A Webpack plugin has full control over Create React App's Webpack config.
+It will be passed the config object and some options.
+
+`webpack(config, options)`
+
+* `config` - the webpack configuration
+* `options.env` - value of `process.env`
+* `options.paths` - the exported [paths object](https://github.com/jdcrensh/create-react-app/blob/custom/packages/react-scripts/config/paths.js)
+
+##### Example
+
+`index.js`
+```js
+'use strict';
+
+const webpack = (config, { env, paths }) => {
+  if (env.NODE_ENV === 'production') {
+    console.log('building for production');
+  } else if (env.NODE_ENV === 'development') {
+    console.log('building for local development');
+  }
+  return config;
+};
+
+module.exports = { webpack };
+```
+
+## Plugin Listing
+
+* [cra-plugin-css-modules](https://www.npmjs.com/package/cra-plugin-css-modules)
+* [cra-plugin-custom](https://www.npmjs.com/package/cra-plugin-custom)
+* [cra-plugin-no-hashes](https://www.npmjs.com/package/cra-plugin-no-hashes)
+* [cra-plugin-no-minify](https://www.npmjs.com/package/cra-plugin-no-minify)

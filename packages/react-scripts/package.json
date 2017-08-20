@@ -2,13 +2,13 @@
   "name": "@jdcrensh/react-scripts",
   "version": "1.0.12-0",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "facebookincubator/create-react-app",
+  "repository": "jdcrensh/create-react-app#custom",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/facebookincubator/create-react-app/issues"
+    "url": "https://github.com/jdcrensh/create-react-app/issues"
   },
   "files": ["bin", "config", "scripts", "template", "utils"],
   "bin": {
