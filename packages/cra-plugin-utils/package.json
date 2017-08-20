@@ -1,6 +1,6 @@
 {
   "name": "cra-plugin-utils",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Utilities for Create React App plugins",
   "main": "index.js",
   "repository": "jdcrensh/create-react-app#custom",

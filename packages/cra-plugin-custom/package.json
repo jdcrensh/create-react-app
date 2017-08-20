@@ -1,6 +1,6 @@
 {
   "name": "cra-plugin-custom",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Config customizer plugin for Create React App",
   "main": "index.js",
   "repository": "jdcrensh/create-react-app#custom",
