@@ -5,8 +5,5 @@
   "main": "index.js",
   "repository": "jdcrensh/create-react-app#custom",
   "author": "Jon Crenshaw <jdcrensh@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "react-scripts-plugin-utils": "^0.2.0"
-  }
+  "license": "MIT"
 }

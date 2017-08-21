@@ -1,12 +1,12 @@
 'use strict';
 
-const { isEnabled } = require('react-scripts-plugin-utils');
+const { isEnabled } = require('./utils');
 
 module.exports = {
-  webpack: (config, { env }) => {
+  apply: config => {
     if (
-      env.NODE_ENV === 'production' &&
-      isEnabled(env.CRA_PLUGIN_NO_HASHES || 'true')
+      process.env.NODE_ENV === 'production' &&
+      isEnabled(process.env.CRA_PLUGIN_NO_HASHES || 'true')
     ) {
       const walk = obj => {
         const paths = {
