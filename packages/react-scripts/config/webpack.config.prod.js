@@ -28,9 +28,8 @@ const prefix = process.env.REACT_APP_SF_PREFIX || 'MyApp';
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 // By default, set it to the path to the static resource for Visualforce.
-const publicPath = paths.servedPath !== '/'
-  ? paths.servedPath
-  : `{!$Resource.${prefix}}/`;
+const publicPath =
+  paths.servedPath !== '/' ? paths.servedPath : `{!$Resource.${prefix}}/`;
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
@@ -208,11 +207,11 @@ module.exports = {
                   use: [
                     {
                       loader: require.resolve('css-loader'),
-                      options: require('./custom/cssModules')({
+                      options: {
                         importLoaders: 1,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
-                      }),
+                      },
                     },
                     {
                       loader: require.resolve('postcss-loader'),
