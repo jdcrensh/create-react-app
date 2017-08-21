@@ -8,7 +8,13 @@ Enable [CSS Modules](https://github.com/css-modules/css-modules) in your CRA app
 yarn add -D cra-plugin-css-modules
 ```
 
-That's it. Your app will now have CSS Modules enabled.
+Add to `cra.config.js`
+
+```js
+module.exports = {
+  plugins: ['css-modules'],
+};
+```
 
 ## Compatability
 
@@ -16,4 +22,3 @@ The official Create React App does not have a supported plugin system.
 This plugin is compatable with the following forks:
 
 * [@jdcrensh/react-scripts](https://www.npmjs.com/package/@jdcrensh/react-scripts)
-* [salesforce-react-scripts](https://www.npmjs.com/package/salesforce-react-scripts)
