@@ -22,16 +22,12 @@ module.exports = {
   // convenience, eg. `'css-modules'` is the same as `require('react-scripts-plugin-css-modules')`
   plugins: ['css-modules', require('./my-internal-plugin')],
 
-  // Webpack configuration (see `react-scripts-plugin-utils` for info)
-  webpack: (config, options) => {
+  // Webpack configuration
+  apply: (config, options) => {
     return config;
   },
 };
 ```
-
-## Plugin Development
-
-See [react-scripts-plugin-utils](https://www.npmjs.com/package/react-scripts-plugin-utils)
 
 ## Plugin Listing
 
