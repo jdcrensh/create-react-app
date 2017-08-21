@@ -1,24 +1,24 @@
-# Plugin to disable minification for Create React App
+# Plugin to disable file hashes for Create React App
 
-Disable build minification in your CRA app's build output.
+Disables file hashes (ie. `main.35dbe941.js`) in your CRA app's build output. 
 
 ## Install
 
 ```bash
-yarn add -D cra-plugin-no-minify
+yarn add -D react-scripts-plugin-no-hashes
 ```
 
 Add to `cra.config.js`
 
 ```js
 module.exports = {
-  plugins: ['no-minify'],
+  plugins: ['no-hashes'],
 };
 ```
 
 ## Configuration (dotenv)
 
-* `CRA_PLUGIN_NO_MINIFY` - Set to `false` to disable this plugin's behavior. Defaults to `true`.
+* `CRA_PLUGIN_NO_HASHES` - Set to `false` to disable this plugin's behavior. Defaults to `true`.
 
 ## Compatability
 

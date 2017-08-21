@@ -6,7 +6,7 @@ _Note: This plugin system is unsupported by the CRA team and will not work with 
 
 ## What is a plugin?
 
-* Naming convension for plugin modules is `cra-plugin-NAME` (scoped modules are supported).
+* Naming convension for plugin modules is `react-scripts-plugin-NAME` (scoped modules are supported).
 * Plugins are loaded via the `plugins` array in `cra.config.js`.
 * A plugin is a simple module exporting the feature(s) that it supports.
 * Plugins have some access to Create React App internals through an `options` object passed to it. If there's an aspect of the internals that aren't provided, open a PR to request it.
@@ -14,7 +14,7 @@ _Note: This plugin system is unsupported by the CRA team and will not work with 
 ## Install
 
 ```bash
-yarn add cra-plugin-utils
+yarn add react-scripts-plugin-utils
 ```
 
 ## Features
@@ -32,7 +32,7 @@ It will be passed the config object and some options.
 
 #### Example
 
-`cra-plugin-example/index.js`
+`react-scripts-plugin-example/index.js`
 
 ```js
 module.exports = {
