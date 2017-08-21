@@ -38,8 +38,8 @@ const {
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
-const customize = require('../config/custom');
-const config = customize(require('../config/webpack.config.dev'));
+const configure = require('../config/configure');
+const config = configure.webpack(require('../config/webpack.config.dev'));
 const createDevServerConfig = require('../config/webpackDevServer.config');
 
 const useYarn = fs.existsSync(paths.yarnLockFile);

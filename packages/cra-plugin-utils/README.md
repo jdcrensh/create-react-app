@@ -1,55 +1,62 @@
-# Utilities for Create React App plugins
+# Core utilities for Create React App plugins
 
-Provides some utility functions to help with writing Create React App plugins.
+This package provides the core functionality for building plugins for Create React App. 
+
+_Note: This plugin system is unsupported by the CRA team and will not work with the official `react-scripts` dependency. Plugins will only work with supporting forks._
+
+## What is a plugin?
+
+* Naming convension for plugin modules is `cra-plugin-NAME` (scoped modules are supported).
+* Plugins are loaded via the `plugins` array in `cra.config.js`.
+* A plugin is a simple module exporting the feature(s) that it supports.
+* Plugins have some access to Create React App internals through an `options` object passed to it. If there's an aspect of the internals that aren't provided, open a PR to request it.
 
 ## Install
 
 ```bash
-yarn add -D cra-plugin-utils
+yarn add cra-plugin-utils
 ```
 
-## Webpack Utilities
+## Features
 
-### `filterPlugins(config, filter)`
+### Webpack
 
-Returns a filtered array of plugins.
+A Webpack plugin has full control over Create React App's Webpack config.
+It will be passed the config object and some options.
 
-* config - the webpack config
-* filter - an object keyed by plugin names and boolean values. If
-           value is `false`, the named plugin will be filtered out.
+#### `webpack(config, options)`
+
+* `config` - the webpack configuration
+* `options.env` - value of `process.env`
+* `options.paths` - the exported [paths object](https://github.com/jdcrensh/create-react-app/blob/custom/packages/react-scripts/config/paths.js)
 
 #### Example
 
-```javascript
-const { filterPlugins } = require('cra-plugin-utils');
+`cra-plugin-example/index.js`
 
-const webpack = (config, env) => {
-  if (env === 'production') {
-    config.plugins = filterPlugins(config, {
-      UglifyJsPlugin: false,
-    });
-  }
-  return config;
+```js
+module.exports = {
+  webpack: (config, options) => {
+    // ... update config ...
+    return config;
+  },
 };
-
-module.exports = { webpack };
 ```
 
-### `findCssLoader(config)`
+## Exporting Multiple Plugins
 
-Locates and returns the css-loader config.
+Export as an array if your module contains multiple plugins.
 
-* config - the webpack config
+```js
+module.exports = [
+  require('./foo'),
+  require('./bar'),
+];
+```
 
-### `findRule(config, ext)`
+## Compatability
 
-Locates and returns the rule config that matches `ext`.
+The official Create React App does not have a supported plugin system.
+This plugin is compatable with the following forks:
 
-* config - the webpack config
-* ext - a string representing the rule to match on, eg. `.css`
-
-### `isEnabled(value)`
-
-Returns `false` if string value is "false" or blank, returns `true` otherwise.
-
-* value - string value from `process.env` that may be `true`|`false`
+* [@jdcrensh/react-scripts](https://www.npmjs.com/package/@jdcrensh/react-scripts)
