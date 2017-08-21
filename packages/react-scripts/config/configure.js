@@ -45,8 +45,8 @@ const conf = loadConfig();
 
 const webpack = config =>
   conf.plugins.concat([conf]).reduce((config, plugin) => {
-    if (typeof plugin.webpack === 'function') {
-      config = plugin.webpack(config, { env: process.env, paths });
+    if (typeof plugin.apply === 'function') {
+      config = plugin.apply(config, { env: process.env, paths });
     }
     return config;
   }, config);
