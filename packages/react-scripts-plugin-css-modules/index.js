@@ -1,9 +1,9 @@
 'use strict';
 
-const { findCssLoader } = require('react-scripts-plugin-utils');
+const { findCssLoader } = require('./utils');
 
 module.exports = {
-  webpack: config => {
+  apply: config => {
     const cssLoader = findCssLoader(config);
     cssLoader.options = Object.assign(cssLoader.options, {
       modules: true,

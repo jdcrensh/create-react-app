@@ -1,16 +1,12 @@
 'use strict';
 
-const {
-  findCssLoader,
-  filterPlugins,
-  isEnabled,
-} = require('react-scripts-plugin-utils');
+const { filterPlugins, findCssLoader, isEnabled } = require('./utils');
 
 module.exports = {
-  webpack: (config, { env }) => {
+  apply: config => {
     if (
-      env.NODE_ENV === 'production' &&
-      isEnabled(env.CRA_PLUGIN_NO_MINIFY || 'true')
+      process.env.NODE_ENV === 'production' &&
+      isEnabled(process.env.CRA_PLUGIN_NO_MINIFY || 'true')
     ) {
       // remove UglifyJsPlugin
       config.plugins = filterPlugins(config, {

@@ -3,6 +3,12 @@
 const filterPlugins = (config, filter) =>
   config.plugins.filter(p => filter[getFunctionName(p)] !== false);
 
+const getFunctionName = obj => {
+  const funcNameRegex = /(function (.{1,})\(|class (.{1,}))/;
+  const results = funcNameRegex.exec(obj.constructor.toString());
+  return results && results.length > 1 ? /\w+ (\w+)/.exec(results[1])[1] : '';
+};
+
 const findCssLoader = config => {
   const rule = findRule(config, '.css');
   const loaders = rule.loader || rule.use;
@@ -20,17 +26,6 @@ const findRule = (config, ext) => {
   return rule;
 };
 
-const getFunctionName = obj => {
-  const funcNameRegex = /(function (.{1,})\(|class (.{1,}))/;
-  const results = funcNameRegex.exec(obj.constructor.toString());
-  return results && results.length > 1 ? /\w+ (\w+)/.exec(results[1])[1] : '';
-};
-
 const isEnabled = value => value && value !== 'false';
 
-module.exports = {
-  filterPlugins,
-  findCssLoader,
-  findRule,
-  isEnabled,
-};
+module.exports = { filterPlugins, findCssLoader, isEnabled };
