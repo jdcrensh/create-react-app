@@ -12,7 +12,10 @@ const loadPlugins = (plugins = []) => {
     if (isPlainObject(p)) {
       return p;
     } else if (typeof p === 'string') {
-      const pluginPath = path.resolve(paths.appNodeModules, `cra-plugin-${p}`);
+      const pluginPath = path.resolve(
+        paths.appNodeModules,
+        `react-scripts-plugin-${p}`
+      );
       if (fs.existsSync(pluginPath)) {
         return require(pluginPath);
       } else {

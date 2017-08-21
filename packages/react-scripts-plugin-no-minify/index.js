@@ -1,6 +1,10 @@
 'use strict';
 
-const { findCssLoader, filterPlugins, isEnabled } = require('cra-plugin-utils');
+const {
+  findCssLoader,
+  filterPlugins,
+  isEnabled,
+} = require('react-scripts-plugin-utils');
 
 module.exports = {
   webpack: (config, { env }) => {

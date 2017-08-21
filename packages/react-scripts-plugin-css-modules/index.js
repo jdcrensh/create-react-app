@@ -1,6 +1,6 @@
 'use strict';
 
-const { findCssLoader } = require('cra-plugin-utils');
+const { findCssLoader } = require('react-scripts-plugin-utils');
 
 module.exports = {
   webpack: config => {

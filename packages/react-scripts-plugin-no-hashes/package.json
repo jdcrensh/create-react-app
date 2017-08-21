@@ -1,5 +1,5 @@
 {
-  "name": "cra-plugin-no-hashes",
+  "name": "react-scripts-plugin-no-hashes",
   "version": "0.2.0",
   "description": "Plugin to disable file hashes for Create React App",
   "main": "index.js",
@@ -7,6 +7,6 @@
   "author": "Jon Crenshaw <jdcrensh@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "cra-plugin-utils": "^0.2.0"
+    "react-scripts-plugin-utils": "^0.2.0"
   }
 }

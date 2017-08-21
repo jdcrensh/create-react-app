@@ -5,7 +5,7 @@ Enable [CSS Modules](https://github.com/css-modules/css-modules) in your CRA app
 ## Install
 
 ```bash
-yarn add -D cra-plugin-css-modules
+yarn add -D react-scripts-plugin-css-modules
 ```
 
 Add to `cra.config.js`

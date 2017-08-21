@@ -19,10 +19,10 @@ The ES5 module exported by `cra.config.js` at the app's root is used for configu
 ```js
 module.exports = {
   // Load plugins by name and/or by reference. Loading plugins by name is for
-  // convenience, eg. `'css-modules'` is the same as `require('cra-plugin-css-modules')`
+  // convenience, eg. `'css-modules'` is the same as `require('react-scripts-plugin-css-modules')`
   plugins: ['css-modules', require('./my-internal-plugin')],
 
-  // Webpack configuration (see `cra-plugin-utils` for info)
+  // Webpack configuration (see `react-scripts-plugin-utils` for info)
   webpack: (config, options) => {
     return config;
   },
@@ -31,10 +31,10 @@ module.exports = {
 
 ## Plugin Development
 
-See [cra-plugin-utils](https://www.npmjs.com/package/cra-plugin-utils)
+See [react-scripts-plugin-utils](https://www.npmjs.com/package/react-scripts-plugin-utils)
 
 ## Plugin Listing
 
-* [cra-plugin-css-modules](https://www.npmjs.com/package/cra-plugin-css-modules)
-* [cra-plugin-no-hashes](https://www.npmjs.com/package/cra-plugin-no-hashes)
-* [cra-plugin-no-minify](https://www.npmjs.com/package/cra-plugin-no-minify)
+* [react-scripts-plugin-css-modules](https://www.npmjs.com/package/react-scripts-plugin-css-modules)
+* [react-scripts-plugin-no-hashes](https://www.npmjs.com/package/react-scripts-plugin-no-hashes)
+* [react-scripts-plugin-no-minify](https://www.npmjs.com/package/react-scripts-plugin-no-minify)

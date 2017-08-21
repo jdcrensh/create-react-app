@@ -1,6 +1,6 @@
 'use strict';
 
-const { isEnabled } = require('cra-plugin-utils');
+const { isEnabled } = require('react-scripts-plugin-utils');
 
 module.exports = {
   webpack: (config, { env }) => {
