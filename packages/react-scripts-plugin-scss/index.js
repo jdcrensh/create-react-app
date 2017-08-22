@@ -18,7 +18,6 @@ module.exports = {
       scssRule.use.push(scssLoader);
     }
     pushRule(config, scssRule);
-    console.log(scssRule);
     return config;
   },
 };
