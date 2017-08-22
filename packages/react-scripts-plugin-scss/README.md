@@ -5,7 +5,7 @@ Enable [SCSS](http://sass-lang.com) in your CRA app.
 ## Install
 
 ```bash
-yarn add -D react-scripts-plugin-scss node-sass sass-loader
+yarn add -D react-scripts-plugin-scss
 ```
 
 Add to `cra.config.js`
