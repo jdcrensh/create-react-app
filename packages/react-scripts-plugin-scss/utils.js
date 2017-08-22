@@ -1,13 +1,5 @@
 'use strict';
 
-const findCssLoader = config => {
-  const rule = findRule(config, '.css');
-  const loaders = rule.loader || rule.use;
-  return loaders.find(
-    l => typeof l.loader === 'string' && l.loader.indexOf('css-loader') > -1
-  );
-};
-
 const findRule = (config, ext) => {
   const _find = rules =>
     rules.find(r => r.test instanceof RegExp && r.test.test(ext));
@@ -19,4 +11,11 @@ const findRule = (config, ext) => {
   return rule;
 };
 
-module.exports = { findCssLoader };
+const pushRule = (config, rule) => {
+  const rules = config.module.rules.find(r => r.oneOf).oneOf;
+  const fileRule = rules.pop();
+  rules.push(rule);
+  rules.push(fileRule);
+};
+
+module.exports = { findRule, pushRule };
