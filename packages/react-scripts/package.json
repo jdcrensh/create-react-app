@@ -2,7 +2,7 @@
   "name": "@jdcrensh/react-scripts",
   "version": "1.0.12-5",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "jdcrensh/create-react-app#custom",
+  "repository": "jdcrensh/create-react-app#jdcrensh",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
