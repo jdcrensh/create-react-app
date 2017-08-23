@@ -26,9 +26,14 @@ _Note that the value of `--template` may be the npm package's name without `reac
 
 npm [scoped modules](https://docs.npmjs.com/misc/scope) are also supported, by naming or prefixing the module with `@scope/react-scripts-template`, eg. `@scope/react-scripts-template` or `@scope/react-scripts-template-foobar`.
 
-Scoped templates can then be used like:
+Scoped templates can then be used as such:
 
 ```bash
+create-react-app --scripts-version @jdcrensh/react-scripts --template @scope
+```
+or
+```bash
+create-react-app --scripts-version @jdcrensh/react-scripts --template @scope/react-scripts-template-foobar
 ```
 
 > Naming convention inspired by [ESLint Sharable Configs](https://eslint.org/docs/developer-guide/shareable-configs).
