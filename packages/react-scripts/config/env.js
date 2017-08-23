@@ -70,8 +70,20 @@ if (!process.env.SF_API_VERSION) {
 }
 if (!process.env.REACT_APP_SF_PREFIX) {
   process.env.REACT_APP_SF_PREFIX = _.upperFirst(
-    _.camelCase(paths.appPackage ? paths.appPackage.name : 'MyApp')
+    _.camelCase(
+      paths.appPackageJson ? require(paths.appPackageJson).name : 'MyReactApp'
+    )
   );
+}
+const sfPrefix = process.env.REACT_APP_SF_PREFIX;
+if (!process.env.REACT_APP_SF_CONTROLLER) {
+  process.env.REACT_APP_SF_CONTROLLER = `${sfPrefix}Controller`;
+}
+if (!process.env.REACT_APP_SF_PAGE) {
+  process.env.REACT_APP_SF_PAGE = sfPrefix;
+}
+if (!process.env.REACT_APP_SF_STATIC_RESOURCE) {
+  process.env.REACT_APP_SF_STATIC_RESOURCE = sfPrefix;
 }
 
 // Grab NODE_ENV and REACT_APP_* environment variables and prepare them to be

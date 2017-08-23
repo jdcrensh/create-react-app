@@ -22,7 +22,22 @@ create-react-app my-react-app --scripts-version salesforce-react-scripts
 
 #### Credentials
 
-Update your deployment credentials in `.env.local`
+Update your deployment credentials in `.env.local`:
+
+* `SF_LOGIN_URL` - Login URL
+* `SF_USERNAME` - Username of deploying user
+* `SF_PASSWORD` - Password + security token of deploying user 
+
+#### Naming of deployed controller, page, static resource
+
+By default, naming is inferred from the name field in `package.json`. For example, if the package's name value is `my-react-app`, the name `MyReactApp` will be used.
+
+These variables may be configured in your app's `.env` file.
+
+* `REACT_APP_SF_PREFIX` - Defaults to the value as described above.
+* `REACT_APP_SF_CONTROLLER` - The page's controller name. An empty class will be deployed if it does not already exist. This value is used in `public/visualforce.html` and may be used in your code to reference `@RemoteAction` methods, eg. `window[process.env.REACT_APP_SF_CONTROLLER].myMethod`. Defaults to `${REACT_APP_SF_PREFIX}Controller`
+* `REACT_APP_SF_PAGE` - Name of the generated VisualForce page. The page is generated using `public/visualforce.html`. Defaults to the value of `REACT_APP_SF_PREFIX`.
+* `REACT_APP_SF_STATIC_RESOURCE` - Name of the static resource containing containing the contents of `/build`. Defaults to `REACT_APP_SF_PREFIX`.
 
 ### Deploy
 
