@@ -6,8 +6,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="theme-color" content="#000000" />
-    <!-- Use base href so all resources are relative to the static resource -->
-    <base href="{!$Resource.%REACT_APP_SF_STATIC_RESOURCE%}/" />
+    <!--
+      The global variable webpackPublicPath is used internally
+      by Webpack to provide it the correct `public` folder path
+      so it can reference resources from code.
+    -->
+    <script>
+      window.webpackPublicPath = '%PUBLIC_URL%/';
+    </script>
     <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/

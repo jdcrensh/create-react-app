@@ -49,9 +49,6 @@ module.exports = function(
     eject: 'react-scripts eject',
   };
 
-  // set homepage to '.' for resolving relative to static resource
-  appPackage.homepage = '.';
-
   // Add project-level env
   const defaultEnv = `
     # Enables importing absolute paths for modules under the src directory
