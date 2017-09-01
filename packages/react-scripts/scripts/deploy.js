@@ -79,7 +79,10 @@ const login = conn => () => {
   const username = process.env[SF_USERNAME];
   const password = process.env[SF_PASSWORD];
   pushStep(`Logging in as ${username}`);
-  return conn.login(username, password).then(resolve).catch(reject);
+  return conn
+    .login(username, password)
+    .then(resolve)
+    .catch(reject);
 };
 
 const bundle = () => {
@@ -124,7 +127,7 @@ const deployBundle = conn => bundle => {
     fullName,
     description: description(),
     contentType: 'application/zip',
-    cacheControl: 'Private',
+    cacheControl: 'Public',
     content: bundle.getContentsAsString('base64'),
   };
   pushStep(`Deploying bundle as ${fullName}.resource`);
