@@ -25,11 +25,7 @@ const getClientEnvironment = require('./env');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
-// By default, set it to the path to the static resource for Visualforce.
-const publicPath =
-  paths.servedPath !== '/'
-    ? paths.servedPath
-    : `{!$Resource.${process.env.REACT_APP_SF_STATIC_RESOURCE}}/`;
+const publicPath = paths.servedPath;
 // Some apps do not use client-side routing with pushState.
 // For these, "homepage" can be set to "." to enable relative asset paths.
 const shouldUseRelativeAssetPaths = publicPath === './';
