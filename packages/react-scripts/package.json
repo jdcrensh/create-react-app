@@ -1,6 +1,6 @@
 {
   "name": "salesforce-react-scripts",
-  "version": "1.0.13-4",
+  "version": "1.0.14-0",
   "description": "Configuration and scripts for Create React App for Salesforce",
   "repository": "jdcrensh/create-react-app#salesforce",
   "license": "BSD-3-Clause",
@@ -54,7 +54,7 @@
     "postcss-loader": "2.0.6",
     "promise": "8.0.1",
     "promisify-node": "^0.4.0",
-    "react-dev-utils": "^4.0.0",
+    "react-dev-utils": "^4.0.1",
     "stream-buffers": "^3.0.1",
     "style-loader": "0.18.2",
     "sw-precache-webpack-plugin": "0.11.4",
