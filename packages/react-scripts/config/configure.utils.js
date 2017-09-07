@@ -61,10 +61,7 @@ const validatePlugins = plugins => {
         fail(`Array at index ${i} cannot be empty`);
       }
     }
-    if (typeof p !== 'string') {
-      fail(`Expected a string or array at index ${i}`);
-    }
-    if (!resolvePluginPath(p)) {
+    if (typeof p === 'string' && !resolvePluginPath(p)) {
       fail(`Could not resolve plugin '${p}'`);
     }
   });

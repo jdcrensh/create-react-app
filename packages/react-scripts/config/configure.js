@@ -16,7 +16,7 @@ const plugins = config.plugins.map(p => {
     opts = p.length > 1 ? p[1] : {};
     p = p[0];
   }
-  const plugin = require(resolvePluginPath(p));
+  const plugin = typeof p === 'string' ? require(resolvePluginPath(p)) : p;
   if (typeof plugin.init === 'function') {
     plugin.init(opts);
   }

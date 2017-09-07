@@ -22,6 +22,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+const configure = require('./configure');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -55,6 +56,16 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
     { publicPath: Array(cssFilename.split('/').length).join('../') }
   : {};
+
+// Override properties of extractTextPluginOptions in-place
+if (typeof configure.extractTextPluginOptions === 'function') {
+  const overrides = configure.extractTextPluginOptions();
+  for (const prop in overrides) {
+    if (overrides.hasOwnProperty(prop)) {
+      extractTextPluginOptions[prop] = overrides[prop];
+    }
+  }
+}
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.

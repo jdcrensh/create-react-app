@@ -1,0 +1,12 @@
+{
+  "name": "react-scripts-plugin-salesforce",
+  "version": "0.0.0",
+  "description": "Salesforce plugin for Create React App",
+  "main": "index.js",
+  "repository": "jdcrensh/create-react-app#jdcrensh",
+  "author": "Jon Crenshaw <jdcrensh@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-scripts-plugin-no-hashes": "^0.3.1"
+  }
+}
