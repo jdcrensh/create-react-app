@@ -3,7 +3,7 @@
 const { findCssLoader } = require('./utils');
 
 module.exports = {
-  apply: config => {
+  webpack: config => {
     const cssLoader = findCssLoader(config);
     cssLoader.options = Object.assign(cssLoader.options, {
       modules: true,

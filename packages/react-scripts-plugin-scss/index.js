@@ -4,7 +4,7 @@ const clone = require('clone');
 const { findRule, pushRule } = require('./utils');
 
 module.exports = {
-  apply: config => {
+  webpack: config => {
     const scssLoader = {
       loader: require.resolve('sass-loader'),
       options: { outputStyle: 'compressed' },

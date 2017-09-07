@@ -29,8 +29,8 @@ class Configure {
 
   webpack(config) {
     return this.plugins.reduce((config, plugin) => {
-      if (typeof plugin.apply === 'function') {
-        config = plugin.apply(config, { paths: require('./paths') });
+      if (typeof plugin.webpack === 'function') {
+        config = plugin.webpack(config, { paths: require('./paths') });
       }
       return config;
     }, config);

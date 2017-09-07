@@ -3,7 +3,7 @@
 const { filterPlugins, findCssLoader, isEnabled } = require('./utils');
 
 module.exports = {
-  apply: config => {
+  webpack: config => {
     if (
       process.env.NODE_ENV === 'production' &&
       isEnabled(process.env.CRA_PLUGIN_NO_MINIFY || 'true')
