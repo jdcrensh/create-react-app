@@ -13,6 +13,7 @@
 const path = require('path');
 const fs = require('fs');
 const url = require('url');
+const configure = require('./configure');
 
 // Make sure any symlinks in the project folder are resolved:
 // https://github.com/facebookincubator/create-react-app/issues/637
@@ -48,8 +49,15 @@ function getServedPath(appPackageJson) {
   return ensureSlash(servedUrl, true);
 }
 
+// path helper functions passed to modifyPaths
+const helpers = {
+  resolveApp,
+  getPublicUrl,
+  getServedPath,
+};
+
 // config after eject: we're in ./config/
-module.exports = {
+module.exports = configure.paths(helpers, {
   dotenv: resolveApp('.env'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
@@ -62,14 +70,14 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  configPath: resolveApp('cra.config.js'),
-};
+});
 
 // @remove-on-eject-begin
 const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
+helpers.resolveOwn = resolveOwn;
 
 // config before eject: we're in ./node_modules/react-scripts/config/
-module.exports = {
+module.exports = configure.paths(helpers, {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
@@ -83,11 +91,10 @@ module.exports = {
   appNodeModules: resolveApp('node_modules'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
-  configPath: resolveApp('cra.config.js'),
   // These properties only exist before ejecting:
   ownPath: resolveOwn('.'),
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
-};
+});
 
 const ownPackageJson = require('../package.json');
 const reactScriptsPath = resolveApp(`node_modules/${ownPackageJson.name}`);
@@ -100,7 +107,7 @@ if (
   !reactScriptsLinked &&
   __dirname.indexOf(path.join('packages', 'react-scripts', 'config')) !== -1
 ) {
-  module.exports = {
+  module.exports = configure.paths(helpers, {
     dotenv: resolveOwn('template/.env'),
     appPath: resolveApp('.'),
     appBuild: resolveOwn('../../build'),
@@ -114,10 +121,9 @@ if (
     appNodeModules: resolveOwn('node_modules'),
     publicUrl: getPublicUrl(resolveOwn('package.json')),
     servedPath: getServedPath(resolveOwn('package.json')),
-    configPath: resolveOwn('template/cra.config.js'),
     // These properties only exist before ejecting:
     ownPath: resolveOwn('.'),
     ownNodeModules: resolveOwn('node_modules'),
-  };
+  });
 }
 // @remove-on-eject-end

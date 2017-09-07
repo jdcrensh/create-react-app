@@ -21,6 +21,9 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
+// configure and load plugins
+const configure = require('../config/configure');
+
 // Ensure environment variables are read.
 require('../config/env');
 
@@ -28,7 +31,6 @@ const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs-extra');
 const webpack = require('webpack');
-const configure = require('../config/configure');
 const config = configure.webpack(require('../config/webpack.config.prod'));
 const paths = require('../config/paths');
 const checkRequiredFiles = require('react-dev-utils/checkRequiredFiles');

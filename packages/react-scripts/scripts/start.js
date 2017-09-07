@@ -21,6 +21,9 @@ process.on('unhandledRejection', err => {
   throw err;
 });
 
+// configure and load plugins
+const configure = require('../config/configure');
+
 // Ensure environment variables are read.
 require('../config/env');
 
@@ -38,7 +41,6 @@ const {
 } = require('react-dev-utils/WebpackDevServerUtils');
 const openBrowser = require('react-dev-utils/openBrowser');
 const paths = require('../config/paths');
-const configure = require('../config/configure');
 const config = configure.webpack(require('../config/webpack.config.dev'));
 const createDevServerConfig = require('../config/webpackDevServer.config');
 
