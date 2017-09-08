@@ -1,9 +1,9 @@
 {
   "name": "react-scripts-plugin-no-hashes",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Plugin to disable file hashes for Create React App",
   "main": "index.js",
-  "repository": "jdcrensh/create-react-app#custom",
+  "repository": "jdcrensh/create-react-app#jdcrensh",
   "author": "Jon Crenshaw <jdcrensh@gmail.com>",
   "license": "MIT"
 }

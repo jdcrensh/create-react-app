@@ -1,9 +1,9 @@
 {
   "name": "react-scripts-plugin-css-modules",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "CSS Modules plugin for Create React App",
   "main": "index.js",
-  "repository": "jdcrensh/create-react-app#custom",
+  "repository": "jdcrensh/create-react-app#jdcrensh",
   "author": "Jon Crenshaw <jdcrensh@gmail.com>",
   "license": "MIT"
 }
