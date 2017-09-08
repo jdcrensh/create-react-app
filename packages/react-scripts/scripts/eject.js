@@ -22,6 +22,7 @@ const execSync = require('child_process').execSync;
 const chalk = require('chalk');
 const paths = require('../config/paths');
 const createJestConfig = require('./utils/createJestConfig');
+const lintStagedConfig = require('./utils/lintStagedConfig');
 const inquirer = require('react-dev-utils/inquirer');
 const spawnSync = require('react-dev-utils/crossSpawn').sync;
 
@@ -205,6 +206,10 @@ inquirer
     appPackage.babel = {
       presets: ['react-app'],
     };
+
+    // Add lint-staged config
+    console.log(`  Adding ${cyan('lint-staged')} configuration`);
+    appPackage['lint-staged'] = lintStagedConfig;
 
     fs.writeFileSync(
       path.join(appPath, 'package.json'),

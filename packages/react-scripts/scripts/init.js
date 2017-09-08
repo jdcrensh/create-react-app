@@ -43,6 +43,7 @@ module.exports = function(
     build: 'react-scripts build',
     test: 'react-scripts test --env=jsdom',
     eject: 'react-scripts eject',
+    precommit: 'react-scripts precommit',
   };
 
   fs.writeFileSync(
@@ -132,6 +133,20 @@ module.exports = function(
       console.error(`\`${command} ${args.join(' ')}\` failed`);
       return;
     }
+  }
+
+  // init git repo
+  const gitInitProc = spawn.sync('git', ['init'], { stdio: 'ignore' });
+  if (gitInitProc.status !== 0) {
+    console.error(`\`git init\` failed`);
+    return;
+  }
+  const huskyProc = spawn.sync('node', ['node_modules/husky/bin/install.js'], {
+    stdio: 'ignore',
+  });
+  if (huskyProc.status !== 0) {
+    console.error(`\`node node_modules/husky/bin/install.js\` failed`);
+    return;
   }
 
   // Display the most elegant way to cd.
