@@ -1,6 +1,6 @@
 {
   "name": "@gonimbly/react-scripts",
-  "version": "1.0.14-1",
+  "version": "1.0.14-2",
   "description": "Configuration and scripts for Create React App.",
   "repository": "bitbucket:gonimbly/create-react-app",
   "license": "BSD-3-Clause",
