@@ -91,6 +91,8 @@ module.exports = function(
     }
   );
 
+  fs.move(path.join(appPath, 'eslintrc'), path.join(appPath, '.eslintrc'), []);
+
   let command;
   let args;
 

@@ -167,9 +167,11 @@ inquirer
     // Sort the deps
     const unsortedDependencies = appPackage.dependencies;
     appPackage.dependencies = {};
-    Object.keys(unsortedDependencies).sort().forEach(key => {
-      appPackage.dependencies[key] = unsortedDependencies[key];
-    });
+    Object.keys(unsortedDependencies)
+      .sort()
+      .forEach(key => {
+        appPackage.dependencies[key] = unsortedDependencies[key];
+      });
     console.log();
 
     console.log(cyan('Updating the scripts'));
@@ -202,12 +204,6 @@ inquirer
     console.log(`  Adding ${cyan('Babel')} preset`);
     appPackage.babel = {
       presets: ['react-app'],
-    };
-
-    // Add ESlint config
-    console.log(`  Adding ${cyan('ESLint')} configuration`);
-    appPackage.eslintConfig = {
-      extends: 'react-app',
     };
 
     fs.writeFileSync(
