@@ -1,10 +1,8 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 /* @flow */
@@ -14,6 +12,8 @@ import Collapsible from '../components/Collapsible';
 import { isInternalFile } from '../utils/isInternalFile';
 import { isBultinErrorName } from '../utils/isBultinErrorName';
 
+import type { StackFrame as StackFrameType } from '../utils/stack-frame';
+
 const traceStyle = {
   fontSize: '1em',
   flex: '0 1 auto',
@@ -21,7 +21,14 @@ const traceStyle = {
   overflow: 'auto',
 };
 
-class StackTrace extends Component {
+type Props = {|
+  stackFrames: StackFrameType[],
+  errorName: string,
+  contextSize: number,
+  launchEditorEndpoint: ?string,
+|};
+
+class StackTrace extends Component<Props> {
   renderFrames() {
     const {
       stackFrames,
