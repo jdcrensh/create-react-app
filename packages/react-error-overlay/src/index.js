@@ -1,14 +1,13 @@
 /**
  * Copyright (c) 2015-present, Facebook, Inc.
- * All rights reserved.
  *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
  */
 
 /* @flow */
 import React from 'react';
+import type { Element } from 'react';
 import ReactDOM from 'react-dom';
 import CompileErrorContainer from './containers/CompileErrorContainer';
 import RuntimeErrorContainer from './containers/RuntimeErrorContainer';
@@ -27,7 +26,7 @@ type RuntimeReportingOptions = {|
 let iframe: null | HTMLIFrameElement = null;
 let isLoadingIframe: boolean = false;
 
-let renderedElement: null | React.Element<any> = null;
+let renderedElement: null | Element<any> = null;
 let currentBuildError: null | string = null;
 let currentRuntimeErrorRecords: Array<ErrorRecord> = [];
 let currentRuntimeErrorOptions: null | RuntimeReportingOptions = null;
