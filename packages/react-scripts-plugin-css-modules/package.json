@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-plugin-css-modules",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "CSS Modules plugin for Create React App",
   "main": "index.js",
   "repository": "jdcrensh/create-react-app#jdcrensh",
