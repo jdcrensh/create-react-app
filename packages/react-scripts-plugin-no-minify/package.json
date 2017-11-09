@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-plugin-no-minify",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Plugin to disable minification for Create React App",
   "main": "index.js",
   "repository": "jdcrensh/create-react-app#jdcrensh",

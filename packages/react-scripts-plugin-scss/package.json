@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-plugin-scss",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "SCSS Plugin for Create React App",
   "main": "index.js",
   "repository": "jdcrensh/create-react-app#jdcrensh",
