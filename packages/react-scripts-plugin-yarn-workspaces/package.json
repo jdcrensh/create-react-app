@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-plugin-yarn-workspaces",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Yarn Workspaces plugin for Create React App",
   "main": "index.js",
   "repository": "jdcrensh/create-react-app#jdcrensh",
