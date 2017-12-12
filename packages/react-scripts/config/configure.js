@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 const paths = require('./paths');
+const findRoot = require('find-root');
 
 const isPlainObject = o => typeof o == 'object' && o.constructor == Object;
 
@@ -18,7 +19,18 @@ const loadPlugins = (plugins = []) => {
       );
       if (fs.existsSync(pluginPath)) {
         return require(pluginPath);
-      } else {
+      }
+      try {
+        const root = findRoot(paths.appRoot, dir => {
+          const pkg = path.join(dir, 'package.json');
+          return fs.existsSync(pkg) && 'workspaces' in require(pkg);
+        });
+        return require(path.resolve(
+          root,
+          'node_modules',
+          `react-scripts-plugin-${p}`
+        ));
+      } catch (e) {
         console.log(
           chalk.red(`Could not resolve plugin '${p}', has it been installed?\n`)
         );
