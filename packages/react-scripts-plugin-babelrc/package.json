@@ -1,0 +1,9 @@
+{
+  "name": "react-scripts-plugin-babelrc",
+  "version": "1.0.0",
+  "description": "Babelrc Plugin for Create React App",
+  "main": "index.js",
+  "repository": "jdcrensh/create-react-app#jdcrensh",
+  "author": "Jon Crenshaw <jdcrensh@gmail.com>",
+  "license": "MIT"
+}
