@@ -63,4 +63,12 @@ const webpack = config =>
     return config;
   }, config);
 
-module.exports = { webpack };
+const babel = config =>
+  conf.plugins.concat([conf]).reduce((config, plugin) => {
+    if (typeof plugin.babel === 'function') {
+      config = plugin.babel(config, { env: process.env, paths });
+    }
+    return config;
+  }, config);
+
+module.exports = { webpack, babel };
