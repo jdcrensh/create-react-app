@@ -1,6 +1,6 @@
 {
   "name": "salesforce-react-scripts",
-  "version": "1.1.4",
+  "version": "1.1.5-0",
   "description": "Configuration and scripts for Create React App for Salesforce",
   "repository": "jdcrensh/create-react-app#salesforce",
   "license": "MIT",
