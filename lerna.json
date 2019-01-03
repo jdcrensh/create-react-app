@@ -14,5 +14,6 @@
       "tag: internal": ":house: Internal"
     },
     "cacheDir": ".changelog"
-  }
+  },
+  "scope": "@jdcrensh/react-scripts"
 }
