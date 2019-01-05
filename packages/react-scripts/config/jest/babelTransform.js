@@ -8,12 +8,11 @@
 'use strict';
 
 const babelJest = require('babel-jest');
-const configure = require('../configure');
 
-module.exports = babelJest.createTransformer(
-  configure.babel({
-    presets: [require.resolve('babel-preset-react-app')],
-    babelrc: false,
-    configFile: false,
-  })
-);
+babelJest.createTransformer = conf => require('../configure').babel(conf);
+
+module.exports = babelJest.createTransformer({
+  presets: [require.resolve('babel-preset-react-app')],
+  babelrc: false,
+  configFile: false,
+});
