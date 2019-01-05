@@ -18,11 +18,11 @@ module.exports = {
 
 ## Configuration (dotenv)
 
-* `CRA_PLUGIN_NO_MINIFY` - Set to `false` to disable this plugin's behavior. Defaults to `true`.
+- `CRA_PLUGIN_NO_MINIFY` - Set to `false` to disable this plugin's behavior. Defaults to `true`.
 
 ## Compatability
 
 The official Create React App does not have a supported plugin system.
 This plugin is compatable with the following forks:
 
-* [@jdcrensh/react-scripts](https://www.npmjs.com/package/@jdcrensh/react-scripts)
+- [@jdcrensh/react-scripts](https://www.npmjs.com/package/@jdcrensh/react-scripts)

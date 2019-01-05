@@ -1163,7 +1163,7 @@ For example, instead of:
 You would need to move both `index.html` and `src/favicon.ico` into the `public` folder, and change `<link>` to look like this:
 
 ```html
-<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
 ```
 
 This ensures it become a part of the build output, and resolves correctly both with client-side routing and non-root `homepage` in `package.json`. Read more about [using the `public` folder](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#using-the-public-folder) and [why these changes were made](https://github.com/facebook/create-react-app/pull/703).
@@ -1316,7 +1316,7 @@ Now `favicon.ico` is not treated specially anymore.<br>
 If you use it, move it to `src` and add the following line to `<head>` in your HTML:
 
 ```html
-<link rel="shortcut icon" href="./src/favicon.ico">
+<link rel="shortcut icon" href="./src/favicon.ico" />
 ```
 
 #### New Feature

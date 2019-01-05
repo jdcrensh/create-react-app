@@ -24,7 +24,7 @@ try {
   fse.writeFileSync(path.join(temp, 'package.json'), '{}');
 
   // Extract the dependencies from react-scripts (which is a workspace)
-  const dependencies = require('@jdcrensh/react-scripts/package.json')
+  const dependencies = require('salesforce-react-scripts/package.json')
     .dependencies;
   const descriptors = Object.keys(dependencies).map(
     dep => `${dep}@${dependencies[dep]}`

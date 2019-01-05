@@ -1,6 +1,6 @@
 # Yarn Workspaces plugin for Create React App
 
-Use yarn workspaces in your CRA app. 
+Use yarn workspaces in your CRA app.
 
 ## Install
 
@@ -21,4 +21,4 @@ module.exports = {
 The official Create React App does not have a supported plugin system.
 This plugin is compatable with the following forks:
 
-* [@jdcrensh/react-scripts](https://www.npmjs.com/package/@jdcrensh/react-scripts)
+- [@jdcrensh/react-scripts](https://www.npmjs.com/package/@jdcrensh/react-scripts)

@@ -7,7 +7,7 @@ title: Using the Public Folder
 
 ## Changing the HTML
 
-The `public` folder contains the HTML file so you can tweak it, for example, to [set the page title](changing-the-page-title.md).
+The `public` folder contains the HTML file so you can tweak it, for example, to [set the page title](title-and-meta-tags.md).
 The `<script>` tag with the compiled code will be added to it automatically during the build process.
 
 ## Adding Assets Outside of the Module System
@@ -29,7 +29,7 @@ If you put a file into the `public` folder, it will **not** be processed by Webp
 Inside `index.html`, you can use it like this:
 
 ```html
-<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+<link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
 ```
 
 Only files inside the `public` folder will be accessible by `%PUBLIC_URL%` prefix. If you need to use a file from `src` or `node_modules`, you’ll have to copy it there to explicitly specify your intention to make this file a part of the build.
