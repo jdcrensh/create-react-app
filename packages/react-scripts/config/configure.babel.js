@@ -5,7 +5,7 @@ const paths = require('./paths');
 
 const configureBabel = env => config => {
   const conf = loadConfig();
-  conf.plugins.concat([conf]).reduce((config, plugin) => {
+  return conf.plugins.concat([conf]).reduce((config, plugin) => {
     if (typeof plugin.babel === 'function') {
       config = plugin.babel(config, { env, paths });
     }
