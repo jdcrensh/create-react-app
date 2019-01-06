@@ -665,10 +665,6 @@ module.exports = function(webpackEnv) {
   };
 };
 
+const configureWebpack = require('./configure.webpack');
 const _configFactory = module.exports;
-
-module.exports = env => {
-  const configFactory = require('../config/configure.webpack');
-  const baseConfig = _configFactory(env);
-  return configFactory(baseConfig, env);
-};
+module.exports = env => configureWebpack(env)(_configFactory);
