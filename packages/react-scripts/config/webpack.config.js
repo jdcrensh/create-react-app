@@ -532,6 +532,10 @@ module.exports = function(webpackEnv) {
           {
             inject: true,
             template: isEnvProduction ? paths.appVisualforce : paths.appHtml,
+            filename: isEnvProduction
+              ? path.basename(paths.appVisualforce)
+              : undefined,
+            xhtml: true,
           },
           isEnvProduction
             ? {
