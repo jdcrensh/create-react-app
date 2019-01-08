@@ -13,7 +13,7 @@ This fork is periodically updated to integrate official releases of `react-scrip
 * [@jdcrensh/react-scripts](https://github.com/jdcrensh/create-react-app/tree/jdcrensh/packages/react-scripts)
 * [salesforce-react-scripts](https://github.com/jdcrensh/create-react-app/tree/salesforce/packages/react-scripts)
 
-# Create React App [![Build Status](https://travis-ci.org/jdcrensh/create-react-app.svg?branch=jdcrensh)](https://travis-ci.org/facebook/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/jdcrensh/create-react-app/pulls)
+# Create React App [![Build Status](https://travis-ci.org/jdcrensh/create-react-app.svg?branch=jdcrensh)](https://travis-ci.org/jdcrensh/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/jdcrensh/create-react-app/pulls)
 
 Create React apps with no build configuration.
 
