@@ -1,6 +1,6 @@
 {
   "name": "@jdcrensh/react-scripts",
-  "version": "2.1.4-0",
+  "version": "2.1.4-1",
   "description": "Configuration and scripts for Create React App.",
   "repository": "jdcrensh/create-react-app#jdcrensh",
   "license": "MIT",
