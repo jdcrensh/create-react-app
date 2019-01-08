@@ -1,6 +1,6 @@
 {
   "name": "react-scripts-plugin-sentry",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "index.js",
   "author": "Jon Crenshaw <jdcrensh@gmail.com>",
   "license": "MIT",
