@@ -31,7 +31,6 @@ module.exports = {
 
 ## Plugin Listing
 
-* [react-scripts-plugin-css-modules](https://www.npmjs.com/package/react-scripts-plugin-css-modules)
+* [react-scripts-plugin-bashrc](https://www.npmjs.com/package/react-scripts-plugin-bashrc)
 * [react-scripts-plugin-no-hashes](https://www.npmjs.com/package/react-scripts-plugin-no-hashes)
 * [react-scripts-plugin-no-minify](https://www.npmjs.com/package/react-scripts-plugin-no-minify)
-* [react-scripts-plugin-scss](https://www.npmjs.com/package/react-scripts-plugin-scss)
