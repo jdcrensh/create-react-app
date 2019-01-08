@@ -1,4 +1,19 @@
-# Create React App [![Build Status](https://travis-ci.org/facebook/create-react-app.svg?branch=master)](https://travis-ci.org/facebook/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/facebook/create-react-app/pulls)
+# Custom CRA Fork
+
+This is a custom fork containing a modified version of `react-scripts` that brings support for custom Webpack and Babel configuration without eject via a `cra.config.js` file and a plugin system. If you're looking for the official CRA repo, you can find it [here](https://github.com/facebook/create-react-app).
+
+## Official Releases
+
+✅ _Up-to-date as of CRA [v2.1.3](https://github.com/facebook/create-react-app/releases/tag/v2.1.3)_
+
+This fork is periodically updated to integrate official releases of `react-scripts`. Special considerations were made to keep modifications of original code to an absolute minimum to 1) ease maintenance and 2) ensure feature parity with upstream.
+
+## Packages maintained in this repo
+
+* [@jdcrensh/react-scripts](https://github.com/jdcrensh/create-react-app/tree/jdcrensh/packages/react-scripts)
+* [salesforce-react-scripts](https://github.com/jdcrensh/create-react-app/tree/salesforce/packages/react-scripts)
+
+# Create React App [![Build Status](https://travis-ci.org/jdcrensh/create-react-app.svg?branch=jdcrensh)](https://travis-ci.org/facebook/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/jdcrensh/create-react-app/pulls)
 
 Create React apps with no build configuration.
 
