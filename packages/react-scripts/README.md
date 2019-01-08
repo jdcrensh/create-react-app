@@ -1,10 +1,10 @@
 # react-scripts
 
-This package includes scripts and configuration used by [Create React App](https://github.com/jdcrensh/create-react-app/tree/salesforce).<br>
+This package includes scripts and configuration used by [Create React App](https://github.com/facebook/create-react-app).<br>
 Please refer to its documentation:
 
-- [Getting Started](https://github.com/jdcrensh/create-react-app/blob/salesforce/README.md#getting-started) – How to create a new app.
-- [User Guide](https://github.com/jdcrensh/create-react-app/blob/salesforce/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
+- [Getting Started](https://github.com/facebook/create-react-app/blob/master/README.md#getting-started) – How to create a new app.
+- [User Guide](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
 
 ## Forked for Salesforce
 
@@ -53,13 +53,21 @@ The deploy script will:
 
 Service workers, such as the one included in Create React App, are not currently supported.
 
-## Configuration & Plugin Support (unofficial)
+# Configuration & Plugin Support (unofficial)
 
-This is an unofficial fork that extends Create React App with an interface for plugins and general configuration.
+This is an unofficial fork that extends Create React App with an interface for plugins and custom config.
+
+If a `cra.config.js` plugin doesn't exist, there's no difference than if you were using the official package.
 
 ## Configuration
 
-The ES5 module exported by `cra.config.js` at the app's root is used for configuration. The config module expects the same interface as plugins do with exception to the `plugins` property.
+An ES5 module exported by `cra.config.js` at the app's root is used for configuration. Each property is optional.
+
+| Property  | Type                  | Description                                |
+| --------- | --------------------- | ------------------------------------------ |
+| [plugins] | <code>array</code>    | plugin references or names. default: `[]`  |
+| [apply]   | <code>function</code> | webpack config. default: identity function |
+| [babel]   | <code>function</code> | babel config. default: identity function   |
 
 ### Example
 
@@ -67,18 +75,26 @@ The ES5 module exported by `cra.config.js` at the app's root is used for configu
 module.exports = {
   // Load plugins by name and/or by reference. Loading plugins by name is for
   // convenience, eg. `'css-modules'` is the same as `require('react-scripts-plugin-css-modules')`
-  plugins: ['css-modules', require('./my-internal-plugin')],
+  plugins: ['no-minify', require('./my-internal-plugin')],
 
   // Webpack configuration
-  apply: (config, options) => {
+  apply: (config, { env, paths }) => {
+    return config;
+  },
+
+  // Babel configuration
+  babel: (config, { env, paths }) => {
     return config;
   },
 };
 ```
 
-## Plugin Listing
+## Plugins
 
-- [react-scripts-plugin-css-modules](https://www.npmjs.com/package/react-scripts-plugin-css-modules)
+A plugin is simply an exported custom config _without_ the `plugins` property.
+
+## Available Plugins
+
+- [react-scripts-plugin-babelrc](https://www.npmjs.com/package/react-scripts-plugin-babelrc)
 - [react-scripts-plugin-no-hashes](https://www.npmjs.com/package/react-scripts-plugin-no-hashes)
 - [react-scripts-plugin-no-minify](https://www.npmjs.com/package/react-scripts-plugin-no-minify)
-- [react-scripts-plugin-scss](https://www.npmjs.com/package/react-scripts-plugin-scss)
