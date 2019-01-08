@@ -16,11 +16,11 @@ If a `cra.config.js` plugin doesn't exist, there's no difference than if you wer
 
 An ES5 module exported by `cra.config.js` at the app's root is used for configuration. Each property is optional.
 
-| Property     | Type                  | Description                                |
-| ------------ | --------------------- | ------------------------------------------ |
-| [plugins]    | <code>array</code>    | plugin references or names. default: `[]`  |
-| [apply]      | <code>function</code> | webpack config. default: identity function |
-| [babel]      | <code>function</code> | babel config. default: identity function   |
+| Property  | Type                  | Description                                |
+| --------- | --------------------- | ------------------------------------------ |
+| [plugins] | <code>array</code>    | plugin references or names. default: `[]`  |
+| [apply]   | <code>function</code> | webpack config. default: identity function |
+| [babel]   | <code>function</code> | babel config. default: identity function   |
 
 ### Example
 
@@ -34,7 +34,7 @@ module.exports = {
   apply: (config, { env, paths }) => {
     return config;
   },
-  
+
   // Babel configuration
   babel: (config, { env, paths }) => {
     return config;
@@ -48,6 +48,7 @@ A plugin is simply an exported custom config _without_ the `plugins` property.
 
 ## Available Plugins
 
-* [react-scripts-plugin-babelrc](https://www.npmjs.com/package/react-scripts-plugin-babelrc)
-* [react-scripts-plugin-no-hashes](https://www.npmjs.com/package/react-scripts-plugin-no-hashes)
-* [react-scripts-plugin-no-minify](https://www.npmjs.com/package/react-scripts-plugin-no-minify)
+- [react-scripts-plugin-babelrc](https://www.npmjs.com/package/react-scripts-plugin-babelrc)
+- [react-scripts-plugin-no-hashes](https://www.npmjs.com/package/react-scripts-plugin-no-hashes)
+- [react-scripts-plugin-no-minify](https://www.npmjs.com/package/react-scripts-plugin-no-minify)
+- [react-scripts-plugin-sentry](https://www.npmjs.com/package/react-scripts-plugin-sentry)
