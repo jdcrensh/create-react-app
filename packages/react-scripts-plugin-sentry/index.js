@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const { DefinePlugin } = require('webpack');
 const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const SentryPlugin = require('@sentry/webpack-plugin');
 
@@ -15,7 +16,7 @@ module.exports = {
 
     const gitRevisionPlugin = new GitRevisionPlugin(revisionConfig);
 
-    const release = (function(type) {
+    const release = (function getRelease(type) {
       switch (type) {
         case 'VERSION':
           return gitRevisionPlugin.version();
@@ -24,7 +25,7 @@ module.exports = {
         case 'BRANCH':
           return gitRevisionPlugin.branch();
         default:
-          this('VERSION');
+          getRelease('VERSION');
       }
     })(process.env.SENTRY_RELEASE_TYPE);
 
@@ -36,7 +37,11 @@ module.exports = {
         include: path.resolve(paths.appPath, 'build/static/js'),
         urlPrefix: '~/static/js',
       }),
-      new GitRevisionPlugin(),
+      new DefinePlugin({
+        VERSION: JSON.stringify(gitRevisionPlugin.version()),
+        COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
+        BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
+      }),
     ];
     return config;
   },
