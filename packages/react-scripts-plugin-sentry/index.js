@@ -6,11 +6,11 @@ const SentryPlugin = require('@sentry/webpack-plugin');
 
 module.exports = {
   apply: (config, { env, paths }) => {
-    if (env.NODE_ENV !== 'production') {
+    if (env !== 'production') {
       return config;
     }
-    const revisionConfig = env.GIT_REVISION_CONFIG
-      ? JSON.parse(env.GIT_REVISION_CONFIG)
+    const revisionConfig = process.env.GIT_REVISION_CONFIG
+      ? JSON.parse(process.env.GIT_REVISION_CONFIG)
       : undefined;
 
     const gitRevisionPlugin = new GitRevisionPlugin(revisionConfig);
@@ -26,7 +26,7 @@ module.exports = {
         default:
           this('VERSION');
       }
-    })(env.SENTRY_RELEASE_TYPE);
+    })(process.env.SENTRY_RELEASE_TYPE);
 
     config.plugins = [
       ...config.plugins,
