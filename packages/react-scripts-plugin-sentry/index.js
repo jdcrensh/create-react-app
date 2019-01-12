@@ -7,9 +7,6 @@ const SentryPlugin = require('@sentry/webpack-plugin');
 
 module.exports = {
   apply: (config, { env, paths }) => {
-    if (env !== 'production') {
-      return config;
-    }
     const revisionConfig = process.env.GIT_REVISION_CONFIG
       ? JSON.parse(process.env.GIT_REVISION_CONFIG)
       : undefined;
@@ -29,20 +26,25 @@ module.exports = {
       }
     })(process.env.SENTRY_RELEASE_TYPE);
 
-    config.plugins = [
-      ...config.plugins,
-      new SentryPlugin({
-        release,
-        configFile: path.resolve(paths.appPath, '.sentryclirc'),
-        include: path.resolve(paths.appPath, 'build/static/js'),
-        urlPrefix: '~/static/js',
-      }),
-      new DefinePlugin({
-        VERSION: JSON.stringify(gitRevisionPlugin.version()),
-        COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
-        BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
-      }),
-    ];
-    return config;
+    return {
+      ...config,
+      plugins: [
+        env === 'production' &&
+          new SentryPlugin({
+            release,
+            configFile: path.resolve(paths.appPath, '.sentryclirc'),
+            include: path.resolve(paths.appPath, 'build/static/js'),
+            urlPrefix: '~/static/js',
+          }),
+        new DefinePlugin({
+          'process.env': {
+            VERSION: JSON.stringify(gitRevisionPlugin.version()),
+            COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
+            BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
+          },
+        }),
+        ...config.plugins,
+      ].filter(Boolean),
+    };
   },
 };
