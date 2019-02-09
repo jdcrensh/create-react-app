@@ -190,7 +190,7 @@ Promise.resolve()
     status.stop();
     console.log();
     console.error(err);
-    return Promise.reject(err);
+    process.exit(1);
   })
   .then(() => {
     status.stop();
