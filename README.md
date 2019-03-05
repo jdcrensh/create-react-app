@@ -10,8 +10,8 @@ This fork is periodically updated to integrate official releases of `react-scrip
 
 ## Packages maintained in this repo
 
-* [@jdcrensh/react-scripts](https://github.com/jdcrensh/create-react-app/tree/jdcrensh/packages/react-scripts)
-* [salesforce-react-scripts](https://github.com/jdcrensh/create-react-app/tree/salesforce/packages/react-scripts)
+- [@jdcrensh/react-scripts](https://github.com/jdcrensh/create-react-app/tree/jdcrensh/packages/react-scripts)
+- [salesforce-react-scripts](https://github.com/jdcrensh/create-react-app/tree/salesforce/packages/react-scripts)
 
 # Create React App [![Build Status](https://travis-ci.org/jdcrensh/create-react-app.svg?branch=jdcrensh)](https://travis-ci.org/jdcrensh/create-react-app) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-green.svg)](https://github.com/jdcrensh/create-react-app/pulls)
 
@@ -178,7 +178,7 @@ Create React App is a great fit for:
 - **Starting new single-page React applications.**
 - **Creating examples** with React for your libraries and components.
 
-Here are few common cases where you might want to try something else:
+Here are a few common cases where you might want to try something else:
 
 - If you want to **try React** without hundreds of transitive build tool dependencies, consider [using a single HTML file or an online sandbox instead](https://reactjs.org/docs/try-react.html).
 
