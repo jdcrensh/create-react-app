@@ -98,3 +98,4 @@ A plugin is simply an exported custom config _without_ the `plugins` property.
 - [react-scripts-plugin-babelrc](https://www.npmjs.com/package/react-scripts-plugin-babelrc)
 - [react-scripts-plugin-no-hashes](https://www.npmjs.com/package/react-scripts-plugin-no-hashes)
 - [react-scripts-plugin-no-minify](https://www.npmjs.com/package/react-scripts-plugin-no-minify)
+- [react-scripts-plugin-sentry](https://www.npmjs.com/package/react-scripts-plugin-sentry)
