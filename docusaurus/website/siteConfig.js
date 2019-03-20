@@ -88,6 +88,11 @@ const siteConfig = {
     apiKey: '3be60f4f8ffc24c75da84857d6323791',
     indexName: 'create-react-app',
   },
+
+  scrollToTop: true,
+  enableUpdateTime: true,
+  enableUpdateBy: true,
+  docsSideNavCollapsible: true,
 };
 
 module.exports = siteConfig;
