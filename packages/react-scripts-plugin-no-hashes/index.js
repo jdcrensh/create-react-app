@@ -1,13 +1,8 @@
 'use strict';
 
-const { isEnabled } = require('./utils');
-
 module.exports = {
-  apply: config => {
-    if (
-      process.env.NODE_ENV === 'production' &&
-      isEnabled(process.env.CRA_PLUGIN_NO_HASHES || 'true')
-    ) {
+  apply: (config, { env }) => {
+    if (env === 'production') {
       const walk = obj => {
         const paths = {
           object: k => walk(obj[k]),

@@ -1,6 +1,6 @@
 # Plugin to disable file hashes for Create React App
 
-Disables file hashes (ie. `main.35dbe941.js`) in your CRA app's build output.
+Disables file hashes (ie. `main.35dbe941.js`) in your CRA app's production build output.
 
 ## Install
 
@@ -15,10 +15,6 @@ module.exports = {
   plugins: ['no-hashes'],
 };
 ```
-
-## Configuration (dotenv)
-
-- `CRA_PLUGIN_NO_HASHES` - Set to `false` to disable this plugin's behavior. Defaults to `true`.
 
 ## Compatability
 
