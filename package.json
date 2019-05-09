@@ -1,7 +1,8 @@
 {
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/react-scripts",
+    "packages/react-scripts-plugin-*"
   ],
   "scripts": {
     "build": "cd packages/react-scripts && node bin/react-scripts.js build",
