@@ -62,7 +62,7 @@
     "jest-environment-jsdom-fourteen": "0.1.0",
     "jest-resolve": "24.8.0",
     "jest-watch-typeahead": "0.3.1",
-    "jsforce": "1.9.1",
+    "jsforce": "1.9.2",
     "lodash": "4.17.11",
     "mini-css-extract-plugin": "0.5.0",
     "node-status": "1.0.0",
