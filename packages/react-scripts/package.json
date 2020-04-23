@@ -1,6 +1,6 @@
 {
   "name": "salesforce-react-scripts",
-  "version": "3.4.1",
+  "version": "3.4.2-0",
   "description": "Configuration and scripts for Create React App for Salesforce",
   "repository": {
     "type": "git",
