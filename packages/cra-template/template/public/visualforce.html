@@ -1,34 +1,42 @@
-<apex:page controller="%REACT_APP_SF_PREFIX%Controller" docType="html-5.0" applyHtmlTag="false" applyBodyTag="false" showHeader="false"
-  standardStylesheets="false">
+<apex:page
+  controller="%REACT_APP_SF_PREFIX%Controller"
+  docType="html-5.0"
+  applyHtmlTag="false"
+  applyBodyTag="false"
+  showHeader="false"
+  standardStylesheets="false"
+>
   <html lang="en">
-
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="theme-color" content="#000000" />
-    <!--
+    <head>
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <meta name="theme-color" content="#000000" />
+      <!--
       The global variable webpackPublicPath is used internally
       by Webpack to provide it the correct `public` folder path
       so it can reference resources from code.
     -->
-    <script>
-      window.webpackPublicPath = '%PUBLIC_URL%/';
-    </script>
-    <!--
+      <script>
+        window.webpackPublicPath = '%PUBLIC_URL%/';
+      </script>
+      <!--
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <title>React App</title>
-  </head>
+      <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+      <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+      <title>React App</title>
+    </head>
 
-  <body>
-    <noscript>
-      You need to enable JavaScript to run this app.
-    </noscript>
-    <div id="root"></div>
-    <!--
+    <body>
+      <noscript>
+        You need to enable JavaScript to run this app.
+      </noscript>
+      <div id="root"></div>
+      <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
 
@@ -38,7 +46,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-  </body>
-
+    </body>
   </html>
 </apex:page>
