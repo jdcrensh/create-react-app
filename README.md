@@ -4,7 +4,7 @@ This is a custom fork containing a modified version of `react-scripts` that brin
 
 ## Official Releases
 
-✅ _Up-to-date as of CRA [v3.3.0](https://github.com/facebook/create-react-app/releases/tag/v3.3.0)_
+✅ _Up-to-date as of CRA [v3.4.1](https://github.com/facebook/create-react-app/releases/tag/v3.4.1)_
 
 This fork is periodically updated to integrate official releases of `react-scripts`. Special considerations were made to keep modifications of original code to an absolute minimum to 1) ease maintenance and 2) ensure feature parity with upstream.
 
