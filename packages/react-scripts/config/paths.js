@@ -74,6 +74,8 @@ module.exports = {
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
   publicUrlOrPath,
+  // fork paths
+  configPath: resolveApp('cra.config.js'),
 };
 
 // @remove-on-eject-begin
@@ -102,6 +104,8 @@ module.exports = {
   ownNodeModules: resolveOwn('node_modules'), // This is empty on npm 3
   appTypeDeclarations: resolveApp('src/react-app-env.d.ts'),
   ownTypeDeclarations: resolveOwn('lib/react-app.d.ts'),
+  // fork paths
+  configPath: resolveApp('cra.config.js'),
 };
 
 const ownPackageJson = require('../package.json');
@@ -138,6 +142,8 @@ if (
     ownNodeModules: resolveOwn('node_modules'),
     appTypeDeclarations: resolveOwn(`${templatePath}/src/react-app-env.d.ts`),
     ownTypeDeclarations: resolveOwn('lib/react-app.d.ts'),
+    // fork paths
+    configPath: resolveOwn(`${templatePath}/cra.config.js`),
   };
 }
 // @remove-on-eject-end
