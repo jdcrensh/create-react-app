@@ -724,7 +724,7 @@ npm install -g create-react-app@1.0.1
 
     Historically we have allowed specifying `NODE_PATH` environment variable as a way to allow “absolute imports”. For example, running `NODE_PATH=src npm start` in Bash or `set NODE_PATH=src&&npm start` in Windows Cmd would let you import anything inside `src` without specifying a relative path. However, we found a few nasty edge cases when Node.js core modules end up being in `NODE_PATH` and erroneously become bundled. As a result the build would crash on some systems when some libraries are imported. To fix this, we now only honor relative paths from `NODE_PATH` in Create React App. This means the existing use case for absolute imports is still supported (`src` in the example above is relative), but absolute paths in `NODE_PATH` (such as paths to Node.js core modules) will be ignored.
 
-  * [#1188](https://github.com/facebook/create-react-app/pull/1188) Update webpack to fix source map issues. ([@gaearon](https://github.com/gaearon))
+  - [#1188](https://github.com/facebook/create-react-app/pull/1188) Update webpack to fix source map issues. ([@gaearon](https://github.com/gaearon))
 
     Since 0.8.0, we show source maps in development instead of the compiled code. However, it has come to our attention that webpack's source map implementation had issues interpreting Babel output, and caused source maps to be wrong and breakpoints to be unusable in some cases. webpack has released a fix for this, and we have updated the minimal version of webpack that we are using.
 

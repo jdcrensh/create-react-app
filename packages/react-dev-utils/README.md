@@ -8,7 +8,7 @@ Please refer to its documentation:
 
 ## Usage in Create React App Projects
 
-These utilities come by default with [Create React App](https://github.com/facebook/create-react-app), which includes it by default. **You don’t need to install it separately in Create React App projects.**
+These utilities come by default with [Create React App](https://github.com/facebook/create-react-app). **You don’t need to install it separately in Create React App projects.**
 
 ## Usage Outside of Create React App
 
@@ -231,11 +231,11 @@ var formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 
 var compiler = webpack(config);
 
-compiler.hooks.invalid.tap('invalid', function() {
+compiler.hooks.invalid.tap('invalid', function () {
   console.log('Compiling...');
 });
 
-compiler.hooks.done.tap('done', function(stats) {
+compiler.hooks.done.tap('done', function (stats) {
   var rawMessages = stats.toJson({}, true);
   var messages = formatWebpackMessages(rawMessages);
   if (!messages.errors.length && !messages.warnings.length) {
@@ -315,7 +315,7 @@ if (openBrowser('http://localhost:3000')) {
 
 Prints hosting instructions after the project is built.
 
-Pass your parsed `package.json` object as `appPackage`, your the URL where you plan to host the app as `publicUrl`, `output.publicPath` from your webpack configuration as `publicPath`, the `buildFolder` name, and whether to `useYarn` in instructions.
+Pass your parsed `package.json` object as `appPackage`, your URL where you plan to host the app as `publicUrl`, `output.publicPath` from your webpack configuration as `publicPath`, the `buildFolder` name, and whether to `useYarn` in instructions.
 
 ```js
 const appPackage = require(paths.appPackageJson);
